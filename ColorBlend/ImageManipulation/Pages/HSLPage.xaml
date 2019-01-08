@@ -1,0 +1,713 @@
+﻿<Page x:Class="ColorBlend.HSLPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="300"
+      Title="GrayscalePage">
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                HSL Options
+            </TextBlock>
+        </Border>
+        <StackPanel Grid.Row="1" 
+                    Orientation="Vertical"
+                    Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2"
+                      VerticalAlignment="Stretch"
+                      Background="WhiteSmoke">
+            <StackPanel Margin="3"
+                        Orientation="Vertical">
+                <GroupBox x:Name="groupBox" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton Name="HSLRelativeAdjustCheck"
+                                     GroupName="HSLOptionsGroup"
+                                     IsChecked="True">
+                            Relative Adjust
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical" 
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            AdjustImageHSLValues
+                        </TextBlock>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                   ToolTip="Set hue multiplier"
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right">
+                            Hue
+                            </TextBlock>
+                            <Slider Name="HueSlider"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="1"
+                                Value="100"
+                                Minimum="0"
+                                Maximum="100"
+                                ValueChanged="HandleRelativeSliderChanged"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"/>
+                            <TextBox Name="RelativeHue"
+                                 Grid.Row="0"
+                                 Grid.Column="2"
+                                 Margin="1"
+                                 TextChanged="HandleRelativeTextChanged"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Height="22">
+                                100
+                            </TextBox>
+                            <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                   ToolTip="Set saturation multiplier"
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right">
+                            Saturation
+                            </TextBlock>
+                            <Slider Name="SaturationSlider"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="1"
+                                Value="100"
+                                Minimum="0"
+                                Maximum="100"
+                                ValueChanged="HandleRelativeSliderChanged"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"/>
+                            <TextBox Name="RelativeSaturation"
+                                 Grid.Row="1"
+                                 Grid.Column="2"
+                                 Margin="1"
+                                 TextChanged="HandleRelativeTextChanged"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Height="22">
+                                100
+                            </TextBox>
+                            <TextBlock Grid.Row="2"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                   ToolTip="Set luminance multiplier"
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right">
+                            Luminance
+                            </TextBlock>
+                            <Slider Name="LuminanceSlider"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="1"
+                                Value="100"
+                                Minimum="0"
+                                Maximum="100"
+                                ValueChanged="HandleRelativeSliderChanged"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"/>
+                            <TextBox Name="RelativeLuminance"
+                                 Grid.Row="2"
+                                 Grid.Column="2"
+                                 Margin="1"
+                                 TextChanged="HandleRelativeTextChanged"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Height="22">
+                                100
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBox77" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton Name="HSLAbsoluteAdjustCheck"
+                                     GroupName="HSLOptionsGroup"
+                                     IsChecked="False">
+                            Absolute Adjust
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox77}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            HSLBulkSet
+                        </TextBlock>
+                        <Grid Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                  Name="AbsoluteHueCheck"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                                Hue
+                            </CheckBox>
+                            <TextBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="3,1,1,1"
+                                 Width="50"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Name="AbsoluteHueAdjust">
+                                0
+                            </TextBox>
+                            <CheckBox Grid.Row="1"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                  Name="AbsoluteSaturationCheck"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                                Saturation
+                            </CheckBox>
+                            <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Margin="3,1,1,1"
+                                 Width="50"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Name="AbsoluteSaturationAdjust">
+                                0
+                            </TextBox>
+                            <CheckBox Grid.Row="2"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                  Name="AbsoluteLuminanceCheck"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                                Luminance
+                            </CheckBox>
+                            <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Margin="3,1,1,1"
+                                 Width="50"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Name="AbsoluteLuminanceAdjust">
+                                0
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBox1" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton Name="HSLHueShiftCheck"
+                                     GroupName="HSLOptionsGroup"
+                                     IsChecked="False">
+                            Hue Shift
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox1}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            ImageHueShift
+                        </TextBlock>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Margin="1"
+                                   ToolTip="Set value to add to hue."
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right">
+                            Hue
+                            </TextBlock>
+                            <Slider Name="HueShiftSlider"
+                                Grid.Column="1"
+                                Margin="1"
+                                Value="0"
+                                Minimum="0"
+                                Maximum="360"
+                                ValueChanged="HandleRelativeSliderChanged"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"/>
+                            <TextBox Name="HueShiftValue"
+                                 Grid.Column="2"
+                                 Margin="1"
+                                 TextChanged="HandleRelativeTextChanged"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 Height="22">
+                                0
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBox2" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton GroupName="HSLOptionsGroup"
+                                     Name="HSLRestrictionsGroup"
+                                     IsChecked="False">
+                            Restrict HSL Ranges 1
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox2}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RestrictHSL
+                        </TextBlock>
+                        <Grid Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="30*"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Row="0"
+                                  Grid.Column="0"
+                                  IsChecked="True"
+                                  VerticalAlignment="Center"
+                                  Margin="2"
+                                  Name="RestrictHueCheck">
+                                Hue
+                            </CheckBox>
+                            <TextBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="2"
+                                 Name="HueRangeEntry"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="50"
+                                 Height="22" 
+                                 IsEnabled="{Binding IsChecked, ElementName=RestrictHueCheck}">
+                                10
+                            </TextBox>
+                            <CheckBox Grid.Row="1"
+                                  Grid.Column="0"
+                                  IsChecked="True"
+                                  VerticalAlignment="Center"
+                                  Margin="2"
+                                  Name="RestrictSaturationCheck">
+                                Saturation
+                            </CheckBox>
+                            <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Margin="2"
+                                 Name="SaturationRangeEntry"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="50"
+                                 Height="22"
+                                 IsEnabled="{Binding IsChecked, ElementName=RestrictSaturationCheck}">
+                                10
+                            </TextBox>
+                            <CheckBox Grid.Row="2"
+                                  Grid.Column="0"
+                                  IsChecked="True"
+                                  VerticalAlignment="Center"
+                                  Margin="2"
+                                  Name="RestrictLuminanceCheck">
+                                Luminance
+                            </CheckBox>
+                            <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Margin="2"
+                                 Name="LuminanceRangeEntry"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="50"
+                                 Height="22"
+                                 IsEnabled="{Binding IsChecked, ElementName=RestrictLuminanceCheck}">
+                                10
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBox2x" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton GroupName="HSLOptionsGroup"
+                                     Name="HSLRestrictionsGroup2"
+                                     IsChecked="False">
+                            Restrict HSL Ranges 2
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox2x}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RestrictHues2
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="1">
+                                Hue range count
+                            </TextBlock>
+                            <TextBox Name="HueRangeCount2"
+                                     Margin="8,1,1,1"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="40"
+                                     Height="22">
+                                10
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBox2y" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton GroupName="HSLOptionsGroup"
+                                     Name="HSLRestrictToRange"
+                                     IsChecked="False">
+                            Restrict HSL to Range
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox2y}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RestrictHueRange
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="1">
+                                Hue range
+                            </TextBlock>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="1">
+                                from
+                            </TextBlock>
+                            <TextBox Name="HueRangeLow"
+                                     Margin="1"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="40"
+                                     Height="22">
+                                0.0
+                            </TextBox>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="1">
+                                to
+                            </TextBlock>
+                            <TextBox Name="HueRangeHigh"
+                                     Margin="1"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="40"
+                                     Height="22">
+                                360.0
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="groupBox3" Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton GroupName="HSLOptionsGroup"
+                                     Name="HSLReductionsGroup"
+                                     IsChecked="False">
+                            Reduce HSL
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                IsEnabled="{Binding Header.IsChecked, ElementName=groupBox3}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            HSLColorReduction
+                        </TextBlock>
+                        <Grid Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="30*"/>
+                                <ColumnDefinition Width="30*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0"
+                                 Grid.Column="0"
+                                 VerticalAlignment="Center">
+                            Hue
+                            </TextBlock>
+                            <TextBox Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="2"
+                                 Name="HueReductionEntry"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="50"
+                                 Height="22" >
+                                360
+                            </TextBox>
+                            <CheckBox Grid.Row="1"
+                                  Grid.Column="0"
+                                  IsChecked="True"
+                                  VerticalAlignment="Center"
+                                  Margin="2"
+                                  Name="ReduceSaturationCheck">
+                                Saturation
+                            </CheckBox>
+                            <TextBox Grid.Row="1"
+                                 Grid.Column="1"
+                                 Margin="2"
+                                 Name="SaturationReductionEntry"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="50"
+                                 Height="22"
+                                 IsEnabled="{Binding IsChecked, ElementName=ReduceSaturationCheck}">
+                                0.5
+                            </TextBox>
+                            <CheckBox Grid.Row="2"
+                                  Grid.Column="0"
+                                  IsChecked="True"
+                                  VerticalAlignment="Center"
+                                  Margin="2"
+                                  Name="ReduceLuminanceCheck">
+                                Luminance
+                            </CheckBox>
+                            <TextBox Grid.Row="2"
+                                 Grid.Column="1"
+                                 Margin="2"
+                                 Name="LuminanceReductionEntry"
+                                 VerticalAlignment="Center"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 Width="50"
+                                 Height="22"
+                                 IsEnabled="{Binding IsChecked, ElementName=ReduceLuminanceCheck}">
+                                1.0
+                            </TextBox>
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="SillyGroupBox"
+                          Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton Name="HSLSillyStuffCheck"
+                                     GroupName="HSLOptionsGroup"
+                                     IsChecked="False">
+                            Silly
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                Margin="2" 
+                                IsEnabled="{Binding Header.IsChecked, ElementName=SillyGroupBox}">
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            Silly_SwapSaturationLuminance
+                        </TextBlock>
+                        <RadioButton IsChecked="True"
+                                     Margin="1"
+                                     Name="SillySwapSL">
+                            Swap saturation and luminance
+                        </RadioButton>
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            GetHSLImage, ConvertHSLImageToRGBImage
+                        </TextBlock>
+                        <RadioButton IsChecked="False"
+                                     Margin="1"
+                                     Name="RGBtoHSLtoRGB">
+                            RGB→HSL→RGB 1
+                        </RadioButton>
+                        <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RGBtoHSLtoRGB
+                        </TextBlock>
+                        <RadioButton IsChecked="False"
+                                     Margin="1"
+                                     Name="RGBtoHSLtoRGB2">
+                            RGB→HSL→RGB 2
+                        </RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Name="GrayscaleConversion">
+                    <GroupBox.Header>
+                        <RadioButton Name="HSLGrayscaleCheck"
+                                     GroupName="HSLOptionsGroup"
+                                     IsChecked="False">
+                            Grayscale
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical"
+                                Margin="1" 
+                                IsEnabled="{Binding Header.IsChecked, ElementName=GrayscaleConversion}">
+                        <StackPanel Orientation="Vertical"
+                                    Margin="1">
+                            <TextBlock Margin="2,2,2,1"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RGBImageToHueImage
+                            </TextBlock>
+                            <RadioButton Name="HSLConvertToHue"
+                                         GroupName="HSLConversionGroup"
+                                         IsChecked="True"
+                                         Margin="2,1,2,2">
+                                Convert to hue
+                            </RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="1">
+                            <TextBlock Margin="2,2,2,1"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RGBImageToSaturationImage
+                            </TextBlock>
+                            <RadioButton Name="HSLConvertToSaturation"
+                                         GroupName="HSLConversionGroup"
+                                         IsChecked="False"
+                                         Margin="2,1,2,2">
+                                Convert to saturation
+                            </RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="1">
+                            <TextBlock Margin="2,2,2,1"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RGBImageToLuminanceImage
+                            </TextBlock>
+                            <RadioButton Name="HSLConvertToLuminance"
+                                         IsChecked="False"
+                                         GroupName="HSLConversionGroup"
+                                         Margin="2,1,2,2">
+                                Convert to luminance
+                            </RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="1">
+                            <TextBlock Margin="2,2,2,1"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            RGBImageToSLImage
+                            </TextBlock>
+                            <RadioButton Name="HSLConvertToSL"
+                                         IsChecked="False"
+                                         GroupName="HSLConversionGroup"
+                                         Margin="2,1,2,2">
+                                Convert to (S + L) / 2
+                            </RadioButton>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal"
+                            Margin="2,5,2,2">
+                    <TextBlock VerticalAlignment="Center"
+                               Margin="2">
+                        Unique colors:
+                    </TextBlock>
+                    <TextBlock Name="UniqueCountBlock"
+                               VerticalAlignment="Center"
+                               Margin="5,2,2,2">
+                        ?
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

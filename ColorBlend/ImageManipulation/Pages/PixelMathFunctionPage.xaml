@@ -1,0 +1,196 @@
+﻿<Page x:Class="ColorBlend.PixelMathFunctionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Pixel Math Functions
+            </TextBlock>
+        </Border>
+        <StackPanel Grid.Row="1" 
+                    Orientation="Vertical"
+                    Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2"
+                      VerticalAlignment="Stretch"
+                      Background="WhiteSmoke">
+            <StackPanel Margin="3"
+                        Orientation="Vertical">
+                <GroupBox Header="Channels">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <CheckBox Name="UseAlphaChannel"
+                                  Margin="1"
+                                  IsChecked="False">
+                            Alpha
+                        </CheckBox>
+                        <CheckBox Name="UseRedChannel"
+                                  Margin="1"
+                                  IsChecked="True">
+                            Red
+                        </CheckBox>
+                        <CheckBox Name="UseGreenChannel"
+                                  Margin="1"
+                                  IsChecked="True">
+                            Green
+                        </CheckBox>
+                        <CheckBox Name="UseBlueChannel"
+                                  Margin="1"
+                                  IsChecked="True">
+                            Blue
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Functions"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        <RadioButton Name="PixelMathSin"
+                                     Grid.Row="0"
+                                     Grid.Column="0"
+                                 IsChecked="True"
+                                 Margin="2">
+                            Sin
+                        </RadioButton>
+                            <RadioButton Name="PixelMathSinh"
+                                     Grid.Row="0"
+                                     Grid.Column="1"
+                                 IsChecked="False"
+                                 Margin="2">
+                                Sinh
+                            </RadioButton>
+                            <RadioButton Name="PixelMathAsin"
+                                     Grid.Row="0"
+                                     Grid.Column="2"
+                                 IsChecked="False"
+                                 Margin="2">
+                                Asin
+                            </RadioButton>
+                            <RadioButton Name="PixelMathCos"
+                                     Grid.Row="1"
+                                     Grid.Column="0"
+                                 IsChecked="False"
+                                 Margin="2">
+                            Cos
+                        </RadioButton>
+                            <RadioButton Name="PixelMathCosh"
+                                     Grid.Row="1"
+                                     Grid.Column="1"
+                                 IsChecked="False"
+                                 Margin="2">
+                                Cosh
+                            </RadioButton>
+                            <RadioButton Name="PixelMathACos"
+                                     Grid.Row="1"
+                                     Grid.Column="2"
+                                 IsChecked="False"
+                                 Margin="2">
+                                Acos
+                            </RadioButton>
+                            <RadioButton Name="PixelMathTan"
+                                     Grid.Row="2"
+                                     Grid.Column="0"                                     
+                                 IsChecked="False"
+                                 Margin="2">
+                            Tan
+                        </RadioButton>
+                            <RadioButton Name="PixelMathTanh"
+                                     Grid.Row="2"
+                                     Grid.Column="1"                                     
+                                 IsChecked="False"
+                                 Margin="2">
+                                Tanh
+                            </RadioButton>
+                            <RadioButton Name="PixelMathATan"
+                                     Grid.Row="2"
+                                     Grid.Column="2"                                     
+                                 IsChecked="False"
+                                 Margin="2">
+                                Atan
+                            </RadioButton>
+                            <RadioButton Name="PixelMathLog"
+                                     Grid.Row="3"
+                                     Grid.Column="0"                                     
+                                 IsChecked="False"
+                                 Margin="2">
+                            Log
+                        </RadioButton>
+                        <RadioButton Name="PixelMathLog10"
+                                     Grid.Row="3"
+                                     Grid.Column="1"                                     
+                                 IsChecked="False"
+                                 Margin="2">
+                            Log(10)
+                        </RadioButton>
+                        </Grid>
+                        <CheckBox Name="NormalizeValues"
+                                  IsChecked="True"
+                                  Margin="2">
+                            Normalize values
+                        </CheckBox>
+                        <CheckBox Name="NormalizeResults"
+                                  IsChecked="True"
+                                  Margin="2">
+                            Normalize results
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

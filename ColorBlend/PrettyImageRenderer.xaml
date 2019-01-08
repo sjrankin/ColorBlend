@@ -1,0 +1,344 @@
+﻿<Window x:Class="ColorBlend.PrettyImageRenderer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorBlend"
+        mc:Ignorable="d"
+        Title="Pretty Image Renderer" 
+        Height="500" 
+        Width="400" 
+        ShowInTaskbar="False" 
+        ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition />
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0,0.5" >
+                    <GradientStop Color="Orange" Offset="0.0"/>
+                    <GradientStop Color="Yellow" Offset="1.0"/>
+                </RadialGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="24"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2">
+                Pretty Blob Renderer
+            </TextBlock>
+        </Border>
+        <Border Grid.Row="1"
+                Background="WhiteSmoke">
+            <ScrollViewer>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="2,2,7,2"
+                           FontWeight="Bold"
+                               TextTrimming="CharacterEllipsis"
+                           FontSize="14">
+                    Image Width
+                    </TextBlock>
+                    <TextBox Name="ImageWidthInput"
+                             Grid.Row="0"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             Margin="2">
+                        800
+                    </TextBox>
+                    <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           TextTrimming="CharacterEllipsis"
+                           Margin="2,2,7,2"
+                           FontWeight="Bold"
+                           FontSize="14">
+                    Image Height
+                    </TextBlock>
+                    <TextBox Name="ImageHeightInput"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             Margin="2">
+                        1000
+                    </TextBox>
+                    <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="2,2,7,2"
+                           FontWeight="Bold"
+                           FontSize="14">
+                    Image DPI
+                    </TextBlock>
+                    <TextBox Name="ImageDPIInput"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             Margin="2">
+                        300
+                    </TextBox>
+                    <Separator Grid.Row="3"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Blob Count
+                    </TextBlock>
+                    <TextBox Name="BlobCountInput"
+                             Grid.Row="4"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             Margin="2">
+                        500
+                    </TextBox>
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Random Blob Count
+                    </TextBlock>
+                    <CheckBox Grid.Row="5"
+                              Grid.Column="1"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Left"
+                              Margin="2"
+                              IsChecked="False"
+                              Name="RandomBlobCountCheck">
+                        Enable random blob count
+                    </CheckBox>
+                    <TextBlock Grid.Row="6"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Blob Radius
+                    </TextBlock>
+                    <TextBox Name="BlobRadiusInput"
+                             Grid.Row="6"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             Margin="2">
+                        64
+                    </TextBox>
+                    <TextBlock Grid.Row="7"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Random Blob Radius
+                    </TextBlock>
+                    <CheckBox Grid.Row="7"
+                              Grid.Column="1"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Left"
+                              Margin="2"
+                              IsChecked="True"
+                              Name="RandomBlobRadiusCheck">
+                        Enable random blob radius
+                    </CheckBox>
+                    <TextBlock Grid.Row="8"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Background Color
+                    </TextBlock>
+                    <TextBox Name="BGColorInput"
+                             Grid.Row="8"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             FontFamily="Consolas"
+                             Margin="2">
+                        0xff000000
+                    </TextBox>
+                    <Separator Grid.Row="9"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="10"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Grid
+                    </TextBlock>
+                    <CheckBox Grid.Row="10"
+                              Grid.Column="1"
+                              Name="ShowGridCheck"
+                              IsChecked="False"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Left"
+                              Margin="2">
+                        Show Grid
+                    </CheckBox>
+                    <TextBlock Grid.Row="11"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Grid Color
+                    </TextBlock>
+                    <TextBox Name="GridColorInput"
+                             Grid.Row="11"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             FontFamily="Consolas"
+                             Margin="2" 
+                             IsEnabled="{Binding IsChecked, ElementName=ShowGridCheck}">
+                        0xffff0000
+                    </TextBox>
+                    <TextBlock Grid.Row="12"
+                               Grid.Column="0"
+                               TextTrimming="CharacterEllipsis"                               
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="2,2,7,2"
+                               FontWeight="Bold"
+                               FontSize="14">
+                        Grid Spacing
+                    </TextBlock>
+                    <TextBox Name="GridSpacingInput"
+                             Grid.Row="12"
+                             Grid.Column="1"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Height="20"
+                             Width="100"
+                             FontWeight="Bold"
+                             Margin="2" 
+                             IsEnabled="{Binding IsChecked, ElementName=ShowGridCheck}">
+                        40
+                    </TextBox>
+
+                    <GridSplitter Grid.Column="0"
+                              Grid.Row="0"
+                              Grid.RowSpan="100"
+                              Width="5"
+                              VerticalAlignment="Stretch"
+                              HorizontalAlignment="Right"
+                              Background="Goldenrod"/>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Height="25"
+                        Width="75"
+                        ToolTip="Render, save, then close."
+                        Click="HandleOKClick">
+                    Save as...
+                </Button>
+                <Button Grid.Column="1"
+                        Height="25"
+                        Width="75"
+                        ToolTip="Cancel operation."
+                        Click="HandleCancelClick">
+                    Cancel
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

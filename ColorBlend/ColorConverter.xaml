@@ -1,0 +1,215 @@
+﻿<Window x:Class="ColorBlend.ColorConverter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sc="clr-namespace:Iro3.Controls.ColorInput;assembly=SimpleColorInput"
+        Title="Color Converter" Height="240" Width="550">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="35*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2"
+                       FontSize="14"
+                       FontWeight="Bold">
+                Source Format
+            </TextBlock>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="6,2,2,2"
+                       FontSize="14"
+                       FontWeight="Bold">
+                Destination Format
+            </TextBlock>
+            <ComboBox Name="SourceCombo"
+                      SelectionChanged="SourceFormatChanged"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      Margin="2"
+                      SelectedIndex="0">
+                <ComboBoxItem Name="sRGB">
+                    RGB
+                </ComboBoxItem>
+                <ComboBoxItem Name="sHSL">
+                    HSL
+                </ComboBoxItem>
+                <ComboBoxItem Name="sYUV">
+                    YUV
+                </ComboBoxItem>
+                <ComboBoxItem Name="sYCbCr">
+                    YCbCr
+                </ComboBoxItem>
+                <ComboBoxItem Name="sYIQ">
+                    YIQ
+                </ComboBoxItem>
+                <ComboBoxItem Name="sXYZ">
+                    XYZ
+                </ComboBoxItem>
+            </ComboBox>
+            <ComboBox Name="DestinationCombo"
+                      SelectionChanged="DestinationFormatChanged"
+                      Grid.Row="1"
+                      Grid.Column="1"
+                      Margin="6,2,2,2"
+                      SelectedIndex="1">
+                <ComboBoxItem Name="dRGB">
+                    RGB
+                </ComboBoxItem>
+                <ComboBoxItem Name="dHSL">
+                    HSL
+                </ComboBoxItem>
+                <ComboBoxItem Name="dYUV">
+                    YUV
+                </ComboBoxItem>
+                <ComboBoxItem Name="dYCbCr">
+                    YCbCr
+                </ComboBoxItem>
+                <ComboBoxItem Name="dYIQ">
+                    YIQ
+                </ComboBoxItem>
+                <ComboBoxItem Name="dXYZ">
+                    XYZ
+                </ComboBoxItem>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="2">
+                <StackPanel Name="Channel1"
+                            Orientation="Horizontal"
+                            Margin="0,0,3,0">
+                    <TextBlock Name="Channel1Title"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left">
+                        Red
+                    </TextBlock>
+                    <TextBox Name="Channel1Input"
+                             Width="40"
+                             KeyDown="HandleChannelKeyDown"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Name="Channel2"
+                            Orientation="Horizontal"
+                            Margin="5,0,3,0">
+                    <TextBlock Name="Channel2Title"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left">
+                        Green
+                    </TextBlock>
+                    <TextBox Name="Channel2Input"
+                             Width="40"
+                             KeyDown="HandleChannelKeyDown"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Name="Channel3"
+                            Orientation="Horizontal"
+                            Margin="5,0,3,0">
+                    <TextBlock Name="Channel3Title"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left">
+                        Blue
+                    </TextBlock>
+                    <TextBox Name="Channel3Input"
+                             Width="40"
+                             KeyDown="HandleChannelKeyDown"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Name="Channel4"
+                            Visibility="Hidden"
+                            Orientation="Horizontal"
+                            Margin="5,0,3,0">
+                    <TextBlock Name="Channel4Title"
+                               Margin="0,0,2,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left">
+                        2
+                    </TextBlock>
+                    <TextBox Name="Channel4Input"
+                             Width="40"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center">
+                        0
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+                            <sc:SimpleColor Name="ColorControl"
+                                            Grid.Row="3"
+                                            Height="24"
+                                            CurrentColor="CadetBlue"
+                                            Margin="4,2,2,2" 
+                                            HandleColorChanged="ColorControlUpdated"/>
+            <Button Grid.Row="4"
+                    Grid.Column="0"
+                    Width="75"
+                    Height="25"
+                    Margin="3"
+                    Click="ConvertClickHandler">
+                Convert
+            </Button>
+            <TextBlock Name="OutputText"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="6,2,2,2"
+                       FontFamily="Segoe UI"
+                       FontSize="14"
+                       FontWeight="Bold">
+                0,0,0
+            </TextBlock>
+            <GridSplitter Grid.Row="0"
+                          Grid.RowSpan="6"
+                          Grid.Column="1"
+                          Width="4"
+                          Background="Navy"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Left"/>
+        </Grid>
+        <Border Grid.Row="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Height="25"
+                    Width="75"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Click="CloseButtonClick"
+                    IsDefault="True">
+                Close
+            </Button>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,104 @@
+﻿<Page x:Class="ColorBlend.ColorAdjustmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sc="clr-namespace:Iro3.Controls.ColorInput;assembly=SimpleColorInput"
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Image Color Adjustment Testing
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <StackPanel Margin="2"
+                            Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"
+                               Margin="2,2,6,2">
+                        Hue
+                    </TextBlock>
+                    <TextBox VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Width="60"
+                             Height="22"
+                             ToolTip="Enter new hue value (range from -1 to 1 where 0 is no change)"
+                             Name="HueInput">
+                        0.0
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Margin="2"
+                            Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"
+                               Margin="2,2,6,2">
+                        Saturation
+                    </TextBlock>
+                    <TextBox VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Width="60"
+                             Height="22"
+                             ToolTip="Enter new saturation value (range from -1 to 1 where 0 is no change)"
+                             Name="SaturationInput">
+                        0.0
+                    </TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Margin="2"
+                            Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                               Margin="2,2,6,2">
+                        Luminance
+                        </TextBlock>
+                        <TextBox VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Width="60"
+                             Height="22"
+                             ToolTip="Enter new luminance value (range from -1 to 1 where 0 is no change)"
+                             Name="LuminanceInput">
+                            0.0
+                        </TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

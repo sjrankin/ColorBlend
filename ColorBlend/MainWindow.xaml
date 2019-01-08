@@ -1,0 +1,390 @@
+﻿<Window x:Class="ColorBlend.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        SizeChanged="WindowResized"
+        Closing="Window_Closing"
+        Loaded="WindowLoaded"
+        Title="Color Blend" 
+        Top="100"
+        Left="100"
+        Height="500" 
+        Width="800" 
+        ResizeMode="CanResizeWithGrip">
+    <!--
+    <Window.Resources>
+        <Style x:Key="{x:Type ContextMenu}" TargetType="{x:Type ContextMenu}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContextMenu}">
+                        <Border Background="#CD222120" CornerRadius="4, 4, 5, 5" BorderBrush="DarkGray" BorderThickness="2" Opacity="0.96">
+                            <StackPanel ClipToBounds="True" Orientation="Vertical" IsItemsHost="True" Margin="5,4,5,4"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    -->
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ToolBarPanel Grid.Row="0">
+            <ToolBar>
+                <Button Click="MenuExit"
+                        Margin="2">
+                    <Image Source="Images/Exit.png" Height="20"/>
+                </Button>
+                <Separator/>
+                <Button Click="MenuRender"
+                        ToolTip="Initialize and render current default color blobs.">
+                    <Image Source="Images/Render1.png" Height="20"/>
+                </Button>
+                <Button Click="RunPrettyImageRenderer"
+                        ToolTip="Renders pretty blobs to an image that is saved.">
+                    <TextBlock FontWeight="Bold"
+                               FontFamily="Cambria">
+                        R
+                    </TextBlock>
+                </Button>
+                <Button Click="MenuReset"
+                        ToolTip="Reset list of color blobs.">
+                    <Image Source="Images/Reset1.png" Height="20"/>
+                </Button>
+                <ToggleButton Name="ShowObjectBounds"
+                              ToolTip="Toggle object boundry visibility"
+                              Checked="HandleObjectBoundryClick"
+                              Unchecked="HandleObjectBoundryClick">
+                    <Image Source="Images/RedRectangle.png" Height="20"/>
+                </ToggleButton>
+                <ToggleButton Name="PictureBackgroundButton"
+                              ToolTip="Toggles a background picture"
+                              Checked="HandlePictureBackgroundToggle"
+                              Unchecked="HandlePictureBackgroundToggle">
+                    P
+                </ToggleButton>
+                <Separator/>
+                <ToggleButton Margin="2"
+                              ToolTip="Run continuous render test."
+                              Name="NormalContinuous"
+                              IsChecked="False"
+                              Checked="HandleContinuousTestToggleChange"
+                              Unchecked="HandleContinuousTestToggleChange">
+                    <Image Source="Images/Continuous1.png" Height="20"/>
+                </ToggleButton>
+                <ToggleButton Margin="5,2,2,2"
+                              Name="TestContinuous"
+                              ToolTip="Continuous test with the same color blob."
+                              IsChecked="False"
+                              Checked="SameContinuous"
+                              Unchecked="SameContinuous">
+                    <Image Source="Images/Continuous2.png" Height="20"/>
+                </ToggleButton>
+                <ToggleButton Margin="5,2,2,2"
+                              Name="TestManyPoints"
+                              IsChecked="False"
+                              FontWeight="Bold"
+                              ToolTip="Many blob test."
+                              Checked="TestManyBlobs"
+                              Unchecked="TestManyBlobs">
+                    M
+                </ToggleButton>
+                <ToggleButton Margin="5,2,2,2"
+                              Name="PointOverlap"
+                              IsChecked="False"
+                              FontWeight="Bold"
+                              ToolTip="Point overlap test."
+                              Checked="PointOverLapCheck"
+                              Unchecked="PointOverLapCheck">
+                    2
+                </ToggleButton>
+                <Button Name="CropTest2"
+                        Margin="5,2,2,2"
+                        ToolTip="Run crop tests"
+                        Click="HandleCropButtonClick">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Images/CropTest1.png" Height="20"/>
+                        <Path x:Name="BtnArrow" Margin="4" VerticalAlignment="Center" Width="6" Fill="#FF527DB5" Stretch="Uniform" HorizontalAlignment="Right" Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z "/>
+                    </StackPanel>
+                    <Button.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem Header="Crop left side" Click="CropLeftSide"/>
+                            <MenuItem Header="Crop top" Click="CropTopSide"/>
+                            <MenuItem Header="Crop right side" Click="CropRightSide"/>
+                            <MenuItem Header="Crop bottom" Click="CropBottomSide"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <ToggleButton Margin="5,2,2,2"
+                              ToolTip="Set color blobs in motion."
+                        Name="MotionButton"
+                              IsChecked="False"
+                              Checked="HandleMotionToggleChange"
+                              Unchecked="HandleContinuousTestToggleChange">
+                    <Image Source="Images/Motion1.png" Height="20"/>
+                </ToggleButton>
+                <Button Margin="5,2,2,2"
+                        ToolTip="Move a color blob step-by-step."
+                        Name="StepMove"
+                        Click="HandleStepMoveClick">
+                    <Image Source="Images/Step1.png" Height="20"/>
+                </Button>
+                <Separator/>
+                <Button Name="BlockBlendButton"
+                        Margin="2"
+                        ToolTip="Draw a random set of color blocks."
+                        Click="HandleBlendTestButtonClick">
+                    <Image Source="Images/Blend1.png" Height="20"/>
+                </Button>
+                <ToggleButton Name="ContinuousBlendTest"
+                              IsChecked="False"
+                              Margin="2"
+                              ToolTip="Continously draw a random set of color blocks."
+                              Checked="HandleContinuousBlendCheck"
+                              Unchecked="HandleContinuousBlendCheck">
+                    <Image Source="Images/Blend2.png" Height="20"/>
+                </ToggleButton>
+                <Button Name="TestBG"
+                        Click="TestBG_Click"
+                        ToolTip="Test block fill.">
+                    <Image Source="Images/Fill1.png" Height="20"/>
+                </Button>
+                <ToggleButton Margin="2"
+                              Click="GradientBlockToggle"
+                    ToolTip="Gradient block toggle">
+                    <Image Source="Images/Gradient.png" Height="20"/>
+                </ToggleButton>
+                <Separator/>
+                <Button Margin="2"
+                        ToolTip="Draw a random line."
+                        Name="DrawLineButton"
+                        Click="DrawLineButton_Click">
+                    <Image Source="Images/Line1.png" Height="20"/>
+                </Button>
+                <Separator/>
+                <Button Margin="2"
+                        ToolTip="Run the configurator."
+                        Click="RunConfiguratorHandle">
+                    <Image Source="Images/Configurator1.png" Height="20"/>
+                </Button>
+                <Separator/>
+                <Button Margin="2"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        ToolTip="Color converter"
+                        Click="RunColorConverter">
+                    C
+                </Button>
+                <Button Margin="2"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        ToolTip="Histogram tester"
+                        Click="HistogramClick">
+                    H
+                </Button>
+                <Button Margin="2"
+                        FontWeight="Bold"
+                        FontSize="14"
+                        ToolTip="Bayes decoder"
+                        Click="BayesClick">
+                    B
+                </Button>
+                <Button Name="ImageButton"
+                        Margin="5,2,2,2"
+                        ToolTip="Create generated images."
+                        Click="HandleCropButtonClick">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Images/ImageButton.png" Height="20"/>
+                        <Path x:Name="BtnArrow2" Margin="4" VerticalAlignment="Center" Width="6" Fill="#FF527DB5" Stretch="Uniform" HorizontalAlignment="Right" Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z "/>
+                    </StackPanel>
+                    <Button.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem Header="Random colors" Click="GenerateRandomColors"/>
+                            <MenuItem Header="Vertical color ramp" Click="GenerateVerticalColorRamp"/>
+                            <MenuItem Header="Horizontal color ramp" Click="GenerateHorizontalColorRamp"/>
+                            <MenuItem Header="Ramping colors" Click="GenerateRampingColors"/>
+                            <MenuItem Header="Vertical gradients" Click="GenerateVerticalGradients"/>
+                            <MenuItem Header="Horizontal gradients" Click="GenerateHorizontalGradients"/>
+                            <Separator/>
+                            <MenuItem Header="Color channel shifting" Click="ColorChannelShifting"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button Margin="2"
+                        ToolTip="Merge images as channels."
+                        Click="RunImagerMerger">
+                    <Image Height="14" Source="Images/rgb.png"/>
+                </Button>
+                <Button Margin="2"
+                        ToolTip="Test image manipulation functions."
+                        Click="RunImageManipulationWindow">
+                    <Image Source="Images/ImageButton2.png" Height="20"/>
+                </Button>
+                <Separator/>
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Foreground="DimGray"
+                           FontStyle="Italic"
+                           Margin="5,2,2,2">
+                    Duration
+                </TextBlock>
+                <TextBox Name="DurationIn"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Left"
+                         Margin="2"
+                         Width="40"
+                         Height="25">
+                    1000
+                </TextBox>
+                <TextBlock VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="2"
+                           FontStyle="Italic"
+                           Foreground="DimGray">
+                    ms
+                </TextBlock>
+                <Separator/>
+                <Button Margin="2"
+                        VerticalAlignment="Center"
+                        Click="HandleSaveButtonClick">
+                    Save
+                </Button>
+            </ToolBar>
+        </ToolBarPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Name="SurfaceContainer"
+                Grid.Column="0"
+                Background="White"
+                MouseDown="HandleMouseClickInImageContainer" 
+                MouseMove="HandleMouseMoveInTarget"
+                    MouseRightButtonDown="HandleRightButtonDownInTarget"
+                MouseLeftButtonDown="HandleMouseClickInImageContainer">
+                <Image Name="SurfaceDestination"
+                       IsHitTestVisible="False" Stretch="None"/>
+                <!--
+                <Image Name="SurfaceDestination"
+                   IsHitTestVisible="False"
+                   VerticalAlignment="Stretch"
+                   HorizontalAlignment="Stretch"/>
+                -->
+            </Border>
+            <Expander Grid.Column="1"
+                      ExpandDirection="Left"
+                      IsExpanded="False">
+                <Expander.Header>
+                    <TextBlock>
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="90"/>
+                        </TextBlock.LayoutTransform>
+                    Debug
+                    </TextBlock>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical">
+                    <CheckBox IsChecked="False"
+                              Name="EnableDebugOutputCheck"
+                              Checked="EnableDebugOutputCheck_Checked"
+                              Unchecked="EnableDebugOutputCheck_Checked"
+                              Margin="2">
+                        Enable output
+                    </CheckBox>
+                    <ListBox Name="DebugOut"
+                             Margin="2">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsVirtualizing="True" 
+                                                    VirtualizationMode="Recycling"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </StackPanel>
+            </Expander>
+        </Grid>
+
+        <Border Grid.Row="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="350"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="StatusText"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2"
+                       FontFamily="Segoe UI"
+                       FontSize="14"
+                       FontWeight="Bold">
+                Status text.
+                </TextBlock>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="1"
+                            Margin="2">
+                    <TextBlock Name="MeanBlockRenderDuration"
+                               VerticalAlignment="Center"
+                               Margin="2,2,6,2">
+                        <Run Name="MeanMSOut"
+                             FontFamily="Consolas"
+                             FontSize="14">
+                            0000000
+                        </Run>
+                        <Run>
+                            t
+                        </Run>
+                    </TextBlock>
+                    <TextBlock Name="CursorPosOut"
+                               VerticalAlignment="Center"
+                               Margin="2,2,10,2">
+                    </TextBlock>
+                    <TextBlock Name="ColorValueOut"
+                               FontFamily="Consolas"
+                               FontWeight="Bold"
+                               FontSize="14"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left">
+                        #ffffffff
+                    </TextBlock>
+                    <Border Name="ColorUnderMouse"
+                            Width="20"
+                            Height="20"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            Background="Transparent"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="10,2,2,2"/>
+                    <TextBlock Name="PointDistance"
+                           FontFamily="Segoe"
+                           FontSize="12"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="10,2,2,2">
+                    0.0
+                    </TextBlock>
+                    <TextBlock Name="MotionPoint"
+                               FontFamily="Segoe"
+                               FontSize="12"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="10,2,2,2">
+                        a,b
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

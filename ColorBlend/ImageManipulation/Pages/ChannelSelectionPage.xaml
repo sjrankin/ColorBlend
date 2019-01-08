@@ -1,0 +1,197 @@
+﻿<Page x:Class="ColorBlend.ChannelSelectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Channel Selection Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                    <CheckBox Name="AsGrayCheck"
+                              IsChecked="False"
+                              VerticalAlignment="Center"
+                              Margin="4,2,2,2">
+                        Show as grayscale
+                    </CheckBox>
+                </StackPanel>
+                <GroupBox Header="RGB"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton GroupName="ColorSpaceGroup"
+                                     Name="EnableRGB"
+                                     IsChecked="True"
+                                     Margin="0,2,0,5">
+                            Enable
+                        </RadioButton>
+                        <CheckBox Name="RGB_Red"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,0,2"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableRGB}">
+                            Show Red
+                        </CheckBox>
+                        <CheckBox Name="RGB_Green"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,0,2"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableRGB}">
+                            Show Green
+                        </CheckBox>
+                        <CheckBox Name="RGB_Blue"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableRGB}">
+                            Show Blue
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="HSL"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton GroupName="ColorSpaceGroup"
+                                     Name="EnableHSL"
+                                     IsChecked="False"
+                                     Margin="0,2,0,5">
+                            Enable
+                        </RadioButton>
+                        <CheckBox Name="HSL_Hue"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableHSL}">
+                            Show Hue
+                        </CheckBox>
+                        <CheckBox Name="HSL_Saturation"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableHSL}">
+                            Show Saturation
+                        </CheckBox>
+                        <CheckBox Name="HSL_Luminance"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableHSL}">
+                            Show Luminance
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2,2,5,2">
+                                Channel order
+                            </TextBlock>
+                            <ComboBox VerticalAlignment="Center"
+                                      Name="HSLOrder"
+                                      Margin="2"
+                                      Width="75" SelectedIndex="0">
+                                <ComboBoxItem>
+                                    HSL
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    HLS
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    SHL
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    SLH
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    LHS
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    LSH
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="CMYK"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton GroupName="ColorSpaceGroup"
+                                     Name="EnableCMYK"
+                                     IsChecked="False"
+                                     Margin="0,2,0,5">
+                            Enable
+                        </RadioButton>
+                        <CheckBox Name="CMYK_Cyan"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True" 
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableCMYK}">
+                            Show Cyan
+                        </CheckBox>
+                        <CheckBox Name="CMYK_Magenta"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableCMYK}">
+                            Show Magenta
+                        </CheckBox>
+                        <CheckBox Name="CMYK_Yellow"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableCMYK}">
+                            Show Yellow
+                        </CheckBox>
+                        <CheckBox Name="CMYK_Black"
+                                  VerticalAlignment="Center"
+                                  Margin="0"
+                                  IsChecked="True"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableCMYK}">
+                            Show Black
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,223 @@
+﻿<Page x:Class="ColorBlend.SteganographyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sc="clr-namespace:Iro3.Controls.ColorInput;assembly=SimpleColorInput"
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Steganography: Write
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock Margin="2"
+                                       VerticalAlignment="Center">
+                                Mask bit quantity
+                            </TextBlock>
+                            <TextBox Name="ImageMaskBitQuantity"
+                                     VerticalContentAlignment="Center"
+                                     Margin="4,2,2,2"
+                                     FontWeight="Bold"
+                                     FontSize="15"
+                                     Width="50"
+                                     Height="23">
+                                2
+                            </TextBox>
+                        </StackPanel>
+                
+                <GroupBox Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton IsChecked="False"
+                                     GroupName="StegTypeGroup"
+                                  Margin="1"
+                                  Name="StegTextMessageCheck"
+                                  Checked="SteganographyTypeChecked"
+                                  Unchecked="SteganographyTypeChecked">
+                            Text message
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical">
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock Margin="2"
+                                       VerticalAlignment="Center">
+                                Text
+                            </TextBlock>
+                            <TextBox Name="SingleWriteText"
+                                     Margin="4,2,2,2"
+                                     Height="23"
+                                     VerticalContentAlignment="Center"
+                                     Width="220">
+                                Text to write to image.
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton IsChecked="True"
+                                     GroupName="StegTypeGroup"
+                                  Margin="1"
+                                  Name="StegMergeImagesCheck"
+                                  Checked="SteganographyTypeChecked"
+                                  Unchecked="SteganographyTypeChecked">
+                            Merge images
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Button Width="100"
+                                Height="23"
+                                HorizontalAlignment="Left"
+                                Margin="2"
+                                VerticalContentAlignment="Center"
+                                Click="MergeImage">
+                            Select Source
+                        </Button>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Margin="2">
+                    <GroupBox.Header>
+                        <RadioButton IsChecked="False"
+                                  Margin="1"
+                                     GroupName="StegTypeGroup"
+                                  Name="StegConstantCheck"
+                                  Checked="SteganographyTypeChecked"
+                                  Unchecked="SteganographyTypeChecked">
+                            Add constant
+                        </RadioButton>
+                    </GroupBox.Header>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock Margin="2"
+                                       VerticalAlignment="Center">
+                                Constant to write
+                            </TextBlock>
+                            <TextBox Name="ConstantToWriteBox"
+                                     Margin="4,2,2,2"
+                                     VerticalContentAlignment="Center"
+                                     Width="40"
+                                     Height="24">
+                                0x64
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Channels">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <CheckBox IsChecked="True"
+                                  Margin="2"
+                                  Name="StegRed">
+                            Red
+                        </CheckBox>
+                        <CheckBox IsChecked="True"
+                                  Margin="2"
+                                  Name="StegGreen">
+                            Green
+                        </CheckBox>
+                        <CheckBox IsChecked="True"
+                                  Margin="2"
+                                  Name="StegBlue">
+                            Blue
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Source Image">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <StackPanel Orientation="Horizontal"
+                                Margin="2">
+                            <TextBlock Margin="2">
+                                <Run>
+                                    Target bytes with
+                                </Run>
+                                <Run Name="BitsAvailableRun"
+                                     FontWeight="Bold"
+                                     Foreground="Navy">
+                                    3
+                                </Run>
+                                <Run>
+                                    bits per byte
+                                </Run>
+                                <Run Name="AvailableTargetBytes"
+                                     FontWeight="Bold"
+                                     Foreground="Navy">
+                                    1000
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock Margin="2">
+                                <Run>
+                                    Bytes required by source
+                                </Run>
+                                <Run Name="BytesNeede"
+                                     FontWeight="Bold"
+                                     Foreground="Navy">
+                                    1000
+                                </Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+                <CheckBox Margin="2"
+                          IsChecked="False"
+                          Name="ShowGridCheck">
+                    Show grid
+                </CheckBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

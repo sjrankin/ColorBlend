@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ColorBlend">
+    <ImageSource x:Key="TestImage0">Images\TestImage0.jpg</ImageSource>
+    <ImageSource x:Key="TestImage1">Images\TestImage1.jpg</ImageSource>
+    <ImageSource x:Key="Degrees0">Images\0°.png</ImageSource>
+    <ImageSource x:Key="Degrees90">Images\90°.png</ImageSource>
+    <ImageSource x:Key="Degrees180">Images\180°.png</ImageSource>
+    <ImageSource x:Key="Degrees270">Images\270°.png</ImageSource>
+</ResourceDictionary>

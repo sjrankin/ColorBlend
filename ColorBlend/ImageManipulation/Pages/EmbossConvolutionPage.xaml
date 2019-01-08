@@ -1,0 +1,119 @@
+﻿<Page x:Class="ColorBlend.EmbossConvolutionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Convolution: Emboss
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <GroupBox Header="Emboss Kernels"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton Name="Emboss"
+                                     IsChecked="True"
+                                     Margin="0,0,0,3">
+                            Emboss
+                        </RadioButton>
+                        <RadioButton Name="Emboss45"
+                                     IsChecked="False"
+                                     Margin="0,0,0,3">
+                            Emboss 45°
+                        </RadioButton>
+                        <RadioButton Name="EmbossULtoBR"
+                                     IsChecked="False"
+                                     Margin="0,0,0,3">
+                            Emboss Upper-Left to Lower Right
+                        </RadioButton>
+                        <RadioButton Name="IntenseEmboss"
+                                     IsChecked="False"
+                                     Margin="0,0,0,3">
+                            Intense Emboss
+                        </RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Options"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <CheckBox Margin="2"
+                                  IsChecked="False"
+                                  ToolTip="If checked, transparent pixels are not convolved"
+                                  Name="SkipTransparentPix">
+                            Skip transparent pixels
+                        </CheckBox>
+                        <CheckBox Margin="2"
+                                  IsChecked="True"
+                                  ToolTip="If checked, transparent pixels are used in convolution calculations"
+                                  Name="UseTransparentPix">
+                            Use transparent pixels
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <CheckBox Name="UseLuminanceThresholdCheck"
+                                      IsChecked="False"
+                                      VerticalAlignment="Center"
+                                      ToolTip="If checked, only pixels whose luminance is greater than the supplied value will be convolved"
+                                      Margin="2">
+                                Use luminance threshold
+                            </CheckBox>
+                            <TextBox Name="LuminanceThresholdInput"
+                                     Width="35"
+                                     Height="24"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Margin="4,2,2,2" 
+                                     IsEnabled="{Binding IsChecked, ElementName=UseLuminanceThresholdCheck}">
+                                0.5
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

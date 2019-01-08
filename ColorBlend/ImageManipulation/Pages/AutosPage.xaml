@@ -1,0 +1,166 @@
+﻿<Page x:Class="ColorBlend.AutosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="GrayscalePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Solarize Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteAutos">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <GroupBox Header="Automatic Functions"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <RadioButton Name="SepiaTone"
+                                         GroupName="AutoButtons"
+                                         VerticalAlignment="Center"
+                                         IsChecked="True">
+                                Sepia tone
+                            </RadioButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <RadioButton Name="AutoContrast"
+                                         GroupName="AutoButtons"
+                                         IsChecked="False"
+                                         VerticalAlignment="Center">
+                                Auto contrast
+                            </RadioButton>
+                            <TextBox Margin="6,0,0,0"
+                                     Name="AutoContrastValue"
+                                     Width="45"
+                                     Height="25"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center" 
+                                     IsEnabled="{Binding IsChecked, ElementName=AutoContrast}">
+                                1.0
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <RadioButton Name="AutoSaturation"
+                                         IsChecked="False"
+                                         GroupName="AutoButtons"
+                                         VerticalAlignment="Center">
+                                Auto saturation
+                            </RadioButton>
+                            <TextBox Margin="6,0,0,0"
+                                     Name="AutoSaturateValue"
+                                     Width="45"
+                                     Height="25"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center" 
+                                     IsEnabled="{Binding IsChecked, ElementName=AutoSaturation}">
+                                100
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <StackPanel Orientation="Vertical"
+                                        VerticalAlignment="Center">
+                                <RadioButton Name="MeanImageColor"
+                                         IsChecked="False"
+                                         GroupName="AutoButtons"
+                                         VerticalAlignment="Center">
+                                    Mean color
+                                </RadioButton>
+                                <TextBlock Margin="2"
+                                   FontSize="9"
+                                   ToolTip="ColorBlender function name"
+                                   Foreground="Maroon">
+                            MeanImageColor2
+                                </TextBlock>
+                            </StackPanel>
+                            <Border Width="50"
+                                    Height="22"
+                                    BorderBrush="Black"
+                                    BorderThickness="0.5"
+                                    Margin="10,2,2,2"
+                                    CornerRadius="3"
+                                    ToolTip="Mean color not yet generated"
+                                    Name="MeanColorSample"/>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="3,2,2,0">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Margin="2">
+                                        RGB
+                                    </TextBlock>
+                                    <TextBlock Margin="2"
+                                               FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextTrimming="CharacterEllipsis"
+                                       Name="MeanColorRGBText">
+                                255,255,255
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="3,0,2,2">
+                                    <TextBlock VerticalAlignment="Center"
+                                               Margin="2">
+                                        Hue
+                                    </TextBlock>
+                                    <TextBlock Margin="2"
+                                               FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextTrimming="CharacterEllipsis"
+                                       Name="MeanColorHueText">
+                                180
+                                    </TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

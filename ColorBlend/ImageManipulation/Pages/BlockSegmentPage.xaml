@@ -1,0 +1,203 @@
+﻿<Page x:Class="ColorBlend.BlockSegmentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sc="clr-namespace:Iro3.Controls.ColorInput;assembly=SimpleColorInput"
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="BlockSegmentPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Block Segment Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilterParamaters">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <GroupBox Header="Segments"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2">
+                                    Horizontal count
+                            </TextBlock>
+                            <TextBox Name="HBlockSizeIn"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Width="30"
+                                         Margin="5,2,2,2">
+                                8
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2">
+                                    Vertical count
+                            </TextBlock>
+                            <TextBox Name="VBlockSizeIn"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Width="30"
+                                         Margin="5,2,2,2">
+                                8
+                            </TextBox>
+                        </StackPanel>
+                        <Button Click="GenerateGCDBlock"
+                                Width="60"
+                                Margin="2"
+                                HorizontalAlignment="Left">
+                            Suggest
+                        </Button>
+                        <Separator/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2">
+                                    Shape margin
+                            </TextBlock>
+                            <TextBox Name="ShapeMarginIn"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Width="30"
+                                         Margin="5,2,2,2">
+                                0
+                            </TextBox>
+                        </StackPanel>
+                        <Separator/>
+                        <CheckBox Name="InvertSpatialRegion"
+                                  IsChecked="False">
+                            Invert spatial region
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Segment Types"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton IsChecked="True"
+                                     Name="MeanColorButton"
+                                     Margin="3">
+                            Mean color
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="MedianColorButton"
+                                     Margin="3,1,3,3">
+                            Median color
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="BrightestColorButton"
+                                     Margin="3,1,3,3">
+                            Brightest color
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="DarkestColorButton"
+                                     Margin="3,1,3,3">
+                            Darkest color
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="LuminanceButton"
+                                     Margin="3,1,3,3">
+                            Color luminance
+                        </RadioButton>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Segment Shapes"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton IsChecked="True"
+                                     Name="RectangularShapeButton"
+                                     Margin="3">
+                            Rectangular
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="SquareShapeButton"
+                                     Margin="3,1,3,3">
+                            Square
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="EllipseShapeButton"
+                                     Margin="3,1,3,3">
+                            Ellipse
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="CircleShapeButton"
+                                     Margin="3,1,3,3">
+                            Circle
+                        </RadioButton>
+                        <StackPanel Orientation="Horizontal" Margin="5,4,0,0">
+                            <TextBlock Width="60"
+                                       TextWrapping="Wrap">
+                                Background color
+                            </TextBlock>
+                            <sc:SimpleColor Name="ShapeBackgroundColor"
+                                                Height="25"
+                                                CurrentColor="Transparent"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Transparency"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Name="EnableTransparencyOverride"
+                                  Margin="2"
+                                  IsChecked="False">
+                            Override transparency
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2">
+                                    Transparency override
+                            </TextBlock>
+                            <TextBox Name="SegmentAlphaIn"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Width="50"
+                                         Margin="5,2,2,2">
+                                1.0
+                            </TextBox>
+                        </StackPanel>
+                        <CheckBox Name="EnableGradientTransparency"
+                                  Margin="2"
+                                  IsChecked="False">
+                            Enable gradient transparency
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

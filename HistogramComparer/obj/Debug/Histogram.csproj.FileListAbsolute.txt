@@ -1,0 +1,8 @@
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\bin\Debug\Histogram.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\bin\Debug\Histogram.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\bin\Debug\HistogramDisplay.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\bin\Debug\HistogramDisplay.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\obj\Debug\Histogram.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\obj\Debug\Histogram.csproj.CoreCompileInputs.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\obj\Debug\Histogram.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramComparer\obj\Debug\Histogram.pdb

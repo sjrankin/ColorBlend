@@ -1,0 +1,135 @@
+﻿<Page x:Class="ColorBlend.ColorReductionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="GrayscalePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Color Reduction Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteColorReduction">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <GroupBox Header="Octree"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton IsChecked="False"
+                                     Name="OctreeCheck"
+                                     Margin="2"
+                                     GroupName="TypesOfColorReduction">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2,2,6,2">
+                                Color count
+                            </TextBlock>
+                            <TextBox Name="OctreeColorCount"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="50"
+                                     Height="25">
+                                255
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Median Cut"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton IsChecked="False"
+                                     Name="MedianCutCheck"
+                                     Margin="2"
+                                     GroupName="TypesOfColorReduction">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2,2,6,2">
+                                Color count
+                            </TextBlock>
+                            <TextBox Name="MedianCutColorCount"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="50"
+                                     Height="25">
+                                255
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                 <GroupBox Header="Color Levels"
+                          Margin="2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton IsChecked="True"
+                                     Name="ColorLevelCheck"
+                                     Margin="2"
+                                     GroupName="TypesOfColorReduction">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2,2,6,2">
+                                Level count
+                            </TextBlock>
+                            <TextBox Name="ColorLevelCount"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Width="50"
+                                     Height="25">
+                                16
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

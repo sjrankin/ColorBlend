@@ -1,0 +1,16 @@
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\HistogramDisplay\bin\Debug\HistogramDisplay.dll
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\HistogramDisplay\bin\Debug\HistogramDisplay.pdb
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.csprojResolveAssemblyReference.cache
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.dll
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.pdb
+C:\Users\Stuart\Desktop\ColorBlend\HistogramDisplay\bin\Debug\HistogramDisplay.dll
+C:\Users\Stuart\Desktop\ColorBlend\HistogramDisplay\bin\Debug\HistogramDisplay.pdb
+C:\Users\Stuart\Desktop\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.dll
+C:\Users\Stuart\Desktop\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramDisplay\bin\Debug\HistogramDisplay.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramDisplay\bin\Debug\HistogramDisplay.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.csproj.CoreCompileInputs.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\HistogramDisplay\obj\Debug\HistogramDisplay.pdb

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="ColorBlend.ColorPointItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="28" d:DesignWidth="200">
+    <Border BorderBrush="DimGray"
+            BorderThickness="0,0,0,1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="10*" MinWidth="24"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="PointNameBlock"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2">
+                Color Name
+            </TextBlock>
+            <TextBlock Name="RelativePointBlock"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2">
+                (1.0, 1.0)
+            </TextBlock>
+            <Border Grid.Column="2"
+                    Name="ColorSample"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Height="20"
+                    Width="20"
+                    Margin="2"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Background="Red"/>
+            <TextBlock Name="ColorValueBlock"
+                       Grid.Column="3"
+                       FontFamily="Consolas"
+                       FontSize="9"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2">
+                0xffff0000
+            </TextBlock>
+        </Grid>
+    </Border>
+</UserControl>

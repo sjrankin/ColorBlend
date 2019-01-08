@@ -1,0 +1,104 @@
+﻿<Page x:Class="ColorBlend.HSLConditionalAdjustmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="300"
+      Title="GrayscalePage">
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontFamily="Segoe UI"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                HSL Options
+            </TextBlock>
+        </Border>
+        <StackPanel Grid.Row="1" 
+                    Orientation="Vertical"
+                    Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2"
+                      VerticalAlignment="Stretch"
+                      Background="WhiteSmoke">
+            <StackPanel Margin="3"
+                        Orientation="Vertical">
+                <ListBox Name="HSLConditionalListBox"
+                         Margin="2"
+                       Height="240"/>
+                <StackPanel Orientation="Horizontal"
+                            Margin="2">
+                    <Button Width="50"
+                            Height="24"
+                            Click="HandleConditionalButton"
+                            ToolTip="Add new HSL condition"
+                            Name="AddHSLConditionButton"
+                            Margin="2">
+                        Add
+                    </Button>
+                    <Button Width="50"
+                            Height="24"
+                            Click="HandleConditionalButton"
+                            ToolTip="Edit currently selected HSL condition"
+                            Name="EditHSLConditionButton"
+                            Margin="2">
+                        Edit
+                    </Button>
+                    <Button Width="50"
+                            Height="24"
+                            Click="HandleConditionalButton"
+                            ToolTip="Delete currently selected HSL condition"
+                            Name="DeleteHSLConditionButton"
+                            Margin="20,2,2,2">
+                        Delete
+                    </Button>
+                    <Button Width="50"
+                            Height="24"
+                            Click="HandleConditionalButton"
+                            ToolTip="Clear all HSL conditions"
+                            Name="ClearHSLConditionsButton"
+                            Margin="2">
+                        Clear
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

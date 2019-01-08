@@ -1,0 +1,271 @@
+﻿<Page x:Class="ColorBlend.ThresholdPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:sc="clr-namespace:Iro3.Controls.ColorInput;assembly=SimpleColorInput"
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Threshold Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <GroupBox Header="One region"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Margin="2"
+                                     GroupName="ThresholdTypes"
+                                     IsChecked="True"
+                                     Name="OneRegionEnable">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center"
+                                           Name="OneThresholdInput"
+                                       Margin="2"
+                                       ToolTip="Normalized luminance value">
+                                Threshold
+                            </TextBlock>
+                            <TextBox Margin="6,2,2,2"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Name="OneRegionThreshold"
+                                     Height="25"
+                                     Width="60">
+                                0.5
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                        Margin="0,4,0,0">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Color for luminance values below the threshold">
+                                Color
+                            </TextBlock>
+                            <sc:SimpleColor Name="ThresholdColorInput"
+                                                Margin="2,0,0,0"
+                                                Height="25"
+                                                CurrentColor="SkyBlue"/>
+                        </StackPanel>
+                        <CheckBox IsChecked="False"
+                                  Name="InvertThreshold0"
+                                  Margin="0,4,0,0">
+                            Invert threshold
+                        </CheckBox>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Two regions"
+                          Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Margin="2"
+                                     GroupName="ThresholdTypes"
+                                     IsChecked="True"
+                                     Name="TwoRegionEnable">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="3,2,2,2" 
+                                    IsEnabled="{Binding IsChecked, ElementName=TwoRegionEnable}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                           Name="ThresholdInput"
+                                       Margin="2"
+                                       ToolTip="Normalized luminance value">
+                                Threshold
+                                </TextBlock>
+                                <TextBox Margin="6,2,2,2"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                         Name="TwoRegionThreshold"
+                                     Height="25"
+                                     Width="60">
+                                    0.5
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,4,0,0">
+                                <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Color for luminance values below the threshol">
+                                Low color
+                                </TextBlock>
+                                <sc:SimpleColor Name="LowColorInput2"
+                                                Margin="2,0,0,0"
+                                                Height="25"
+                                                CurrentColor="#FFB22828"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,4,0,0">
+                                <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Color for luminance values above the threshol">
+                                High color
+                                </TextBlock>
+                                <sc:SimpleColor Name="HighColorInput2"
+                                                Margin="2,0,0,0"
+                                                Height="25"
+                                                CurrentColor="#FF2D8F29"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Three regions"
+                          Margin="4,2,4,4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Margin="2"
+                                     GroupName="ThresholdTypes"
+                                     IsChecked="False"
+                                     Name="ThreeRegionEnable">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="3,2,2,2" 
+                                    IsEnabled="{Binding IsChecked, ElementName=ThreeRegionEnable}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Normalized luminance value">
+                                Low threshold
+                                </TextBlock>
+                                <TextBox Margin="6,2,2,2"
+                                         Name="LowThresholdInput"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                     Height="25"
+                                     Width="60">
+                                    0.25
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,4,0,0">
+                                <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Color for luminance values below the threshol">
+                                Low color
+                                </TextBlock>
+                                <sc:SimpleColor Name="LowColorInput"
+                                                Margin="2,0,0,0"
+                                                Height="25"
+                                                CurrentColor="Gold"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Normalized luminance value">
+                                High threshold
+                                </TextBlock>
+                                <TextBox Margin="6,2,2,2"
+                                         Name="HighThresholdInput"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center"
+                                     Height="25"
+                                     Width="60">
+                                    0.75
+                                </TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,4,0,0">
+                                <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       ToolTip="Color for luminance values above the threshol">
+                                High color
+                                </TextBlock>
+                                <sc:SimpleColor Name="HighColorInput"
+                                                Margin="2,0,0,0"
+                                                Height="25"
+                                                CurrentColor="Orange"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Multiple Regions"
+                          Margin="4,2,4,4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Margin="2"
+                                     GroupName="ThresholdTypes"
+                                     IsChecked="False"
+                                     Name="MultiRegionEnable">
+                            Enable
+                        </RadioButton>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2,6,2,2">
+                            <Button Width="50"
+                                    Height="24"
+                                    HorizontalAlignment="Left"
+                                    Margin="1,1,4,1"
+                                    Click="AddThresholdRange">
+                                Add
+                            </Button>
+                            <Button Width="50"
+                                    Height="25"
+                                    HorizontalAlignment="Left"
+                                    Margin="1"
+                                    Click="RemoveThresholdRange">
+                                Remove
+                            </Button>
+                            <Button Width="50"
+                                    Height="25"
+                                    HorizontalAlignment="Left"
+                                    Margin="1"
+                                    Click="ClearThresholdRange">
+                                Clear
+                            </Button>
+                        </StackPanel>
+                        <DataGrid Margin="2,6,2,2"
+                                  Name="ThresholdUIList"
+                                  Height="150">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Low" Width="40"/>
+                                <DataGridTextColumn Header="High" Width="40"/>
+                                <DataGridTemplateColumn Header="Color">
+
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

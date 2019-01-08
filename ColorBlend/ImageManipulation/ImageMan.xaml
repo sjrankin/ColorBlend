@@ -1,0 +1,635 @@
+﻿<Window x:Class="ColorBlend.ImageMan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorBlend"
+        xmlns:h="clr-namespace:HistogramDisplay;assembly=HistogramDisplay"
+        mc:Ignorable="d"
+        Title="Image Manipulation Tester" 
+        Height="650" 
+        MinHeight="350"
+        Width="1300" 
+        MinWidth="600"
+        ResizeMode="CanResizeWithGrip" 
+        AllowDrop="True"
+        ShowInTaskbar="True">
+    <Grid AllowDrop="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Gold" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3"
+                       Name="HeaderTitle"
+                       FontSize="20"
+                       FontWeight="Bold">
+                Image Manipulations
+            </TextBlock>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition Width="280" MinWidth="200"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Menu Grid.Row="0">
+                    <MenuItem Header="File">
+                        <MenuItem Header="Open"
+                                  Click="OpenImageFile"/>
+                        <MenuItem Header="Save"
+                                  Click="SaveImage"/>
+                        <MenuItem Header="Save as..."
+                                  Click="SaveImageAs"/>
+                        <Separator/>
+                        <MenuItem Header="Reset"
+                                  ToolTip="Reset the image to original state."
+                                  Click="ResetImage"/>
+                        <MenuItem Header="Clear"
+                                  ToolTip="Clear the image."
+                                  Click="ClearImage"/>
+                        <Separator/>
+                        <MenuItem Header="Close"
+                                  Click="HandleCloseMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="General">
+                        <MenuItem Header="Solarize"
+                                  Tag="Solarize"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Threshold"
+                                  Tag="Thresholds"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Grayscale"
+                                  Tag="Grayscale"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Negative"
+                                  Tag="Invert"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Luminance"
+                                  Tag="LuminanceManipulation"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Channel masking"
+                                  Tag="ChannelMask"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Auto"
+                                  Tag="Autos"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Edit">
+                        <MenuItem Header="Edit Test"
+                                  Tag="EditTest"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Math">
+                        <MenuItem Header="Arithemetic"
+                                  Tag="PixelMath"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Math Functions"
+                                  Tag="PixelMathFunction"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Colors">
+                        <MenuItem Header="HSL Adjustment"
+                                  Tag="HSLAdjustments"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="HSL Conditional Adjustment"
+                                  Tag="HSLConditionalAdjustments"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Test HSL Conversions"
+                                  Tag="TestHSLConversions"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Isolate Hue Ranges"
+                                  Tag="IsolateHueRanges"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Select Channels"
+                                  Tag="ChannelSelection"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Highlight Channels"
+                                  Tag="ColorHighlight"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Sort Channels"
+                                  Tag="SortChannels"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Swap Channels"
+                                  Tag="ChannelSwap"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Rolling Mean"
+                                  Tag="RollingMeanChannels"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Merge Channels"
+                                  Tag="RGBMerge"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Split Channels"
+                                  Tag="SplitImage"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Color Reduction"
+                                  Tag="ColorReduction"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Dithering"
+                                  Tag="Dither"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Color Space Conversion"
+                                  Tag="ColorSpaceConversion"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <!--
+                        <MenuItem Header="HSL Adjustment"
+                                  Tag="HSLAdjustment"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        -->
+                        <MenuItem Header="Color Conversions"
+                                  Click="HandleColorConversions"/>
+                    </MenuItem>
+                    <MenuItem Header="Geometry">
+                        <MenuItem Header="Rotate"
+                                  Tag="RotateImage"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Resize"
+                                  Tag="Resize"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Crop image"
+                                  Tag="ImageCropper"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Segments">
+                        <MenuItem Header="Pixelate"
+                                  Tag="BlockSegment"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Border"
+                                  Tag="AddImageBorder"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Sub-Histogram"
+                                  Tag="SubHistorgram"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Masking">
+                        <MenuItem Header="Single image masking"
+                                  Tag="SingleImageMask"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Frequency masking"
+                                  Tag="FrequencyMasking"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Distortion">
+                        <MenuItem Header="Mirror"
+                                  Tag="Mirror"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Segmenting"
+                                  Tag="Segment"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Squishing"
+                                  Tag="Squish"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Steganography Write"
+                                  Tag="SteganographyWrite"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Steganography Read"
+                                  Tag="SteganographyRead"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Convolution">
+                        <MenuItem Header="Blur"
+                                  Tag="Conv_Blur"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Emboss"
+                                  Tag="Conv_Emboss"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Edge Detection"
+                                  Click="HandleMenuClick"
+                                  Tag="Conv_EdgeDetection"/>
+                        <MenuItem Header="Sharpen"
+                                  Tag="Conv_Sharpen"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Mean"
+                                  Tag="Conv_Mean"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Miscellaneous"
+                                  Tag="Conv_Misc"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Bayer"
+                                  Tag="Conv_Bayer"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="User-Defined"
+                                  Tag="Conv_User"
+                                  Click="HandleMenuClick"/>
+                        <Separator/>
+                        <MenuItem Header="Regional"
+                                  Tag="RegionOps"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Transform">
+                        <MenuItem Header="Bayer Decode"
+                                  Tag="BayerDecode"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Hough Transform"
+                                  Tag="HouseTransform"
+                                  Click="HandleMenuClick"/>
+                        <MenuItem Header="Deinterlace"
+                                  Tag="Deinterlace"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Render">
+                        <MenuItem Header="Grid"
+                                  Tag="RenderGrid"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="Conditional">
+                        <MenuItem Header="Silhouette"
+                                  Tag="SilhouetteIf"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                    <MenuItem Header="SIMD">
+                        <MenuItem Header="Linearize Channels"
+                                  Tag="LinearizeChannels"
+                                  Click="HandleMenuClick"/>
+                    </MenuItem>
+                </Menu>
+                <Grid Grid.Row="1" AllowDrop="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="140"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="64"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0">
+                            <!--
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                           FontWeight="Bold"
+                                           Margin="2">
+                                    Pipeline
+                                </TextBlock>
+                                <Button Margin="10,2,2,2"
+                                        Name="AddButton"
+                                        Click="AddButton_Click"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Segoe UI"
+                                        FontSize="10"
+                                        FontWeight="Bold">
+                                    Add
+                                </Button>
+                                <Button Margin="10,2,2,2"
+                                        Name="RemoveButton"
+                                        Click="RemoveButton_Click"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Segoe UI"
+                                        FontSize="10"
+                                        FontWeight="Bold">
+                                    Remove
+                                </Button>
+                                <Button Margin="10,2,2,2"
+                                        Name="InsertButton"
+                                        Click="InsertButton_Click"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Segoe UI"
+                                        FontSize="10"
+                                        FontWeight="Bold">
+                                    Insert
+                                </Button>
+                                <Button Margin="10,2,2,2"
+                                        Name="ClearButton"
+                                        Click="ClearButton_Click"
+                                        VerticalAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontFamily="Segoe UI"
+                                        FontSize="10"
+                                        FontWeight="Bold">
+                                    Clear
+                                </Button>
+                                <CheckBox Margin="10,2,2,2"
+                                          VerticalAlignment="Center"
+                                          ToolTip="If checked, the pipeline can contain only one stage."
+                                          Name="OnlyOneStage"
+                                          IsChecked="True">
+                                    One
+                                </CheckBox>
+                            </StackPanel>
+                            -->
+                            <WrapPanel Orientation="Horizontal">
+                                <CheckBox Name="UseImagesList"
+                                      IsChecked="False"
+                                      ToolTip="Check to use the images in this list instead of the one in the main window."
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Margin="2">
+                                    Enable
+                                </CheckBox>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="2">
+                                    <TextBlock VerticalAlignment="Center"
+                                               HorizontalAlignment="Left">
+                                        Suffix
+                                    </TextBlock>
+                                    <TextBox Name="ChangedFileSuffix"
+                                             Width="30"
+                                             ToolTip="File suffix for changed files. Empty means old files replaced with new files."
+                                             VerticalAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalAlignment="Left"
+                                             Margin="4,0,0,0">
+                                        _#
+                                    </TextBox>
+                                </StackPanel>
+                                <Button Width="35"
+                                        Height="20"
+                                        Click="HandleClearImagesList"
+                                        ToolTip="Clear the items in the image list."
+                                        Margin="2">
+                                    Clear
+                                </Button>
+                                <Button Width="35"
+                                        Height="20"
+                                        Click="HandleLoadImagesList"
+                                        ToolTip="Clear the items in the image list."
+                                        Margin="2">
+                                    Load
+                                </Button>
+                            </WrapPanel>
+                        </Border>
+                        <ListBox Name="ImagesList"
+                                 AllowDrop="True"
+                                 Background="LightGray"
+                                 SelectionChanged="ImagesList_SelectionChanged"
+                                 Grid.Row="1"/>
+                        <!--
+                        <local:QDPipelineControl x:Name="PipelineStagesList"
+                                                 Grid.Row="1"
+                                                 Background="LightGray"
+                                                 Margin="0,0,0,5"/>
+                        -->
+                        <!--
+                        <ListBox Grid.Row="1"
+                                 Margin="0,0,0,5"
+                                 Name="PipelineStagesList"
+                                 Background="LightGray"/>
+                        -->
+                        <!--
+                        <GridSplitter Grid.Row="1"
+                                      Height="5"
+                                      Background="Yellow"
+                                      VerticalAlignment="Bottom"
+                                      HorizontalAlignment="Stretch"/>
+                        -->
+                    </Grid>
+                    <GridSplitter Grid.Column="0"
+                                  Width="5"
+                                  Background="Yellow"
+                                  VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Right"/>
+                    <Grid Grid.Column="0"
+                          Margin="0,0,5,0"
+                          AllowDrop="True"
+                          Background="WhiteSmoke">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <local:ImageFrame x:Name="ImageSurface"
+                                          Margin="4"
+                                          IsImageDropEnabled="True"
+                                          ShowHeaderRow="False"
+                                          ObjectsDroppedEvent="HandleObjectDrop"
+                                          DragOperationStartEvent="DragStartedDoNothing"
+                                          Grid.Column="1"
+                                          IsHitTestVisible="True" 
+                                          ShowCheckerboardBackground="True"
+                                          Stretch="Uniform" 
+                                          ShowFooterRow="False" 
+                                          ImageMousePositionChanged="HandleMouseMovedOverImage"/>
+                        <!--
+                        <Border Name="CheckerboardBorder"
+                            Grid.Column="1"
+                                Margin="4"
+                                AllowDrop="True"
+                            Background="Green">
+                            <Image Name="ImageSurface"
+                           Grid.Column="1"
+                       IsHitTestVisible="False"/>
+                        </Border>
+                    -->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="230"/>
+                                <ColumnDefinition Width="250"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Name="FitToSize"
+                                          Grid.Column="0"
+                                      IsChecked="True"
+                                      ToolTip="Fit image to size of window."
+                                      Checked="FitToSizeCheckChanged"
+                                      Unchecked="FitToSizeCheckChanged"
+                                      VerticalAlignment="Center"
+                                      Margin="6,2,2,2">
+                                Fit
+                            </CheckBox>
+                            <TextBlock Name="StatusBlock"
+                                       Margin="3,2,2,2"
+                                       Grid.Column="1"
+                                       TextWrapping="Wrap"
+                                       TextTrimming="CharacterEllipsis"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontFamily="Segoe UI"
+                                       FontSize="11">
+                                Message
+                            </TextBlock>
+                            <Grid Grid.Column="2"
+                                  Margin="1,1,10,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="80*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Name="MousePositionOverImage"
+                                           Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           FontSize="10"
+                                           FontFamily="Segoe UI">
+                                    (x,y)
+                                </TextBlock>
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="65*"/>
+                                        <ColumnDefinition Width="35*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               Margin="1"
+                                               Name="ColorUnderMouseBlock"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               FontSize="10"
+                                               FontWeight="Normal"
+                                               FontFamily="Segoe UI">
+                                        <TextBlock.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Hex"
+                                                          IsChecked="True"
+                                                          Name="HexContextMenu"
+                                                      Click="ShowColorValueAs"/>
+                                                <MenuItem Header="RGB"
+                                                          IsChecked="False"
+                                                          Name="RGBContextMenu"
+                                                          Click="ShowColorValueAs"/>
+                                                <MenuItem Header="HSL"
+                                                          IsChecked="False"
+                                                          Name="HSLContextMenu"
+                                                          Click="ShowColorValueAs"/>
+                                                <MenuItem Header="CMYK"
+                                                          IsChecked="False"
+                                                          Name="CMYKContextMenu"
+                                                          Click="ShowColorValueAs"/>
+                                            </ContextMenu>
+                                        </TextBlock.ContextMenu>
+                                        #ffffff
+                                    </TextBlock>
+                                    <Border Grid.Column="1"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            Name="ColorUnderMouseSample"
+                                            Margin="3"
+                                            CornerRadius="3"
+                                            BorderBrush="Black"
+                                            BorderThickness="1">
+                                        
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                            <TextBlock Name="ImageInfo"
+                                        Margin="3,2,2,2"
+                                           Grid.Column="3"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       FontFamily="Segoe UI"
+                                       FontSize="14">
+                                Image
+                            </TextBlock>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <GridSplitter Grid.Column="1"
+                          Width="5"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Left"
+                          Background="Yellow"/>
+            <Grid Grid.Column="1"
+                  Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="140"/>
+                </Grid.RowDefinitions>
+                <Frame x:Name="ControlsFrame" Grid.Row="0"
+                       Margin="0,0,0,5" NavigationUIVisibility="Hidden"/>
+                <GridSplitter Grid.Row="1"
+                              HorizontalAlignment="Stretch"
+                              Height="5"
+                              Background="Yellow"/>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+                    <h:HistogramViewer Grid.Row="0"
+                                               Debug="True"
+                                            Name="HDisplay" 
+                                               OutlineBrush="#A0000000" 
+                                               ShowCheckerboardBackground="True" />
+                    <StackPanel Orientation="Vertical"
+                                        Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox VerticalAlignment="Center"
+                                          Margin="6,2,2,2"
+                                          IsChecked="{Binding ShowRed, ElementName=HDisplay}">
+                                <Border Background="Red"
+                                            Height="18"
+                                            Width="20"/>
+                            </CheckBox>
+                            <CheckBox VerticalAlignment="Center"
+                                          Margin="6,2,2,2"
+                                          IsChecked="{Binding ShowGreen, ElementName=HDisplay}">
+                                <Border Background="Lime"
+                                            Height="18"
+                                            Width="20"/>
+                            </CheckBox>
+                            <CheckBox VerticalAlignment="Center"
+                                          Margin="6,2,2,2"
+                                          IsChecked="{Binding ShowBlue, ElementName=HDisplay}">
+                                <Border Background="Blue"
+                                            Height="18"
+                                            Width="20"/>
+                            </CheckBox>
+                            <CheckBox VerticalAlignment="Center"
+                                          Margin="6,2,2,2"
+                                          IsChecked="{Binding ShowGray, ElementName=HDisplay}">
+                                <Border Background="Gray"
+                                            Height="18"
+                                            Width="20"/>
+                            </CheckBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox VerticalAlignment="Center"
+                                          Margin="6,2,2,2"
+                                          IsChecked="{Binding IsOutlined, ElementName=HDisplay}">
+                                Smooth
+                            </CheckBox>
+                            <CheckBox VerticalAlignment="Center"
+                                          IsChecked="{Binding AbsolutePercent, ElementName=HDisplay}"
+                                          Margin="6,2,2,2">
+                                Absolute percent
+                            </CheckBox>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Border Grid.Row="2">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Width="75"
+                    Height="24"
+                    Click="HandleCloseButtonClick">
+                Close
+            </Button>
+        </Border>
+    </Grid>
+</Window>

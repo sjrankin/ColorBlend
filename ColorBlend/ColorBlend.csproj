@@ -1,0 +1,1023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBEB8BCF-C40A-4770-A67C-16BAF230A3DE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ColorBlend</RootNamespace>
+    <AssemblyName>ColorBlend</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics.Vectors">
+      <HintPath>packages\System.Numerics.Vectors.1.1.5-beta\lib\portable-net45+win8\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BatchProcessor\BatchProcessor.cs" />
+    <Compile Include="BayerDecoder\BayerDecoderWindow.xaml.cs">
+      <DependentUpon>BayerDecoderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorConverter.xaml.cs">
+      <DependentUpon>ColorConverter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorConversionTest.xaml.cs">
+      <DependentUpon>ColorConversionTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorEx.cs" />
+    <Compile Include="ColorInterface\HSL.cs" />
+    <Compile Include="ColorInterface\Metrics.cs" />
+    <Compile Include="ColorInterface\Cropping.cs" />
+    <Compile Include="ColorInterface\Deinterlacing.cs" />
+    <Compile Include="ColorInterface\HSLAdjustments.cs" />
+    <Compile Include="ColorInterface\PixelMath.cs" />
+    <Compile Include="ColorInterface\Rotation.cs" />
+    <Compile Include="ColorInterface\Dithering.cs" />
+    <Compile Include="ColorInterface\ConditionalSilhouette.cs" />
+    <Compile Include="ColorInterface\BayerFilter.cs" />
+    <Compile Include="ColorInterface\BlockMath.cs" />
+    <Compile Include="ColorInterface\BufferOperations.cs" />
+    <Compile Include="ColorInterface\Channels.cs" />
+    <Compile Include="ColorInterface\ColorConversions.cs" />
+    <Compile Include="ColorInterface\Convolve.cs" />
+    <Compile Include="ColorInterface\ErrorStack.cs" />
+    <Compile Include="ColorInterface\FormatConversions.cs" />
+    <Compile Include="ColorInterface\Luminance.cs" />
+    <Compile Include="ColorInterface\Border.cs" />
+    <Compile Include="ColorInterface\Segments.cs" />
+    <Compile Include="ColorInterface\Scale.cs" />
+    <Compile Include="ColorInterface\Distortion.cs" />
+    <Compile Include="ColorInterface\Histogram.cs" />
+    <Compile Include="ColorInterface\ImageValidation.cs" />
+    <Compile Include="ColorInterface\Masking.cs" />
+    <Compile Include="ColorInterface\Regional.cs" />
+    <Compile Include="ColorInterface\Rendering.cs" />
+    <Compile Include="ColorInterface\SIMD.cs" />
+    <Compile Include="ColorInterface\SinglePixels.cs" />
+    <Compile Include="ColorInterface\SplitCombine.cs" />
+    <Compile Include="ColorInterface\Steganography.cs" />
+    <Compile Include="ColorPoint.cs" />
+    <Compile Include="ColorPointItem.xaml.cs">
+      <DependentUpon>ColorPointItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Compositing\Compositor.cs" />
+    <Compile Include="Compositing\DisplayItems\DisplayItem.cs" />
+    <Compile Include="Compositing\DisplayItems\DisplayItemBase.cs" />
+    <Compile Include="Compositing\DisplayItems\EllipseItem.cs" />
+    <Compile Include="Compositing\DisplayItems\BufferItem.cs" />
+    <Compile Include="Compositing\DisplayItems\GeneratedItem.cs" />
+    <Compile Include="Compositing\DisplayItems\LineItem.cs" />
+    <Compile Include="Compositing\DisplayItems\RectangleItem.cs" />
+    <Compile Include="Compositing\DisplayList.cs" />
+    <Compile Include="Configurator.xaml.cs">
+      <DependentUpon>Configurator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CrumbBar\Crumb.xaml.cs">
+      <DependentUpon>Crumb.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CrumbBar\CrumbBar.xaml.cs">
+      <DependentUpon>CrumbBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CrumbBar\CrumbMetaData.cs" />
+    <Compile Include="ImageActions\ActionNodes\SolarizeStage.cs" />
+    <Compile Include="ImageActions\ImageList2.cs" />
+    <Compile Include="ImageFrame\ImageFrame.xaml.cs">
+      <DependentUpon>ImageFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageFrame\ImageFrameEvents.cs" />
+    <Compile Include="ImageManipulation\ColorConverter\CMYKtoRGB.xaml.cs">
+      <DependentUpon>CMYKtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoLAB.xaml.cs">
+      <DependentUpon>RGBtoLAB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoXYZ.xaml.cs">
+      <DependentUpon>RGBtoXYZ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoTSL.xaml.cs">
+      <DependentUpon>RGBtoTSL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\LABtoXYZ.xaml.cs">
+      <DependentUpon>LABtoXYZ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoYDbDr.xaml.cs">
+      <DependentUpon>RGBtoYDbDr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoYCgCo.xaml.cs">
+      <DependentUpon>RGBtoYCgCo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\XYZtoLAB.xaml.cs">
+      <DependentUpon>XYZtoLAB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\LABtoRGB.xaml.cs">
+      <DependentUpon>LABtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\XYZtoRGB.xaml.cs">
+      <DependentUpon>XYZtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\TSLtoRGB.xaml.cs">
+      <DependentUpon>TSLtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RYBtoRGB.xaml.cs">
+      <DependentUpon>RYBtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\ColorConversions.xaml.cs">
+      <DependentUpon>ColorConversions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\HSVtoRGB.xaml.cs">
+      <DependentUpon>HSVtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\NoConversion.xaml.cs">
+      <DependentUpon>NoConversion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoRYB.xaml.cs">
+      <DependentUpon>RGBtoRYB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoCMYK.xaml.cs">
+      <DependentUpon>RGBtoCMYK.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoHSV.xaml.cs">
+      <DependentUpon>RGBtoHSV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoYCbCr.xaml.cs">
+      <DependentUpon>RGBtoYCbCr.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoYIQ.xaml.cs">
+      <DependentUpon>RGBtoYIQ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoCMY.xaml.cs">
+      <DependentUpon>RGBtoCMY.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoYUV.xaml.cs">
+      <DependentUpon>RGBtoYUV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\YDbDrtoRGB.xaml.cs">
+      <DependentUpon>YDbDrtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\YCbCrtoRGB.xaml.cs">
+      <DependentUpon>YCbCrtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\YIQtoRGB.xaml.cs">
+      <DependentUpon>YIQtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\CMYtoRGB.xaml.cs">
+      <DependentUpon>CMYtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\YUVtoRGB.xaml.cs">
+      <DependentUpon>YUVtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\HSLtoRGB.xaml.cs">
+      <DependentUpon>HSLtoRGB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ColorConverter\RGBtoHSL.xaml.cs">
+      <DependentUpon>RGBtoHSL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\HSLConditionalSheet.xaml.cs">
+      <DependentUpon>HSLConditionalSheet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\HSLConditionsEditor.xaml.cs">
+      <DependentUpon>HSLConditionsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\HSLConditionalAdjustmentPage.xaml.cs">
+      <DependentUpon>HSLConditionalAdjustmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\IsolateHueRangePage.xaml.cs">
+      <DependentUpon>IsolateHueRangePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\TestHSLConversionsPage.xaml.cs">
+      <DependentUpon>TestHSLConversionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\PixelMathFunctionPage.xaml.cs">
+      <DependentUpon>PixelMathFunctionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\PixelMathPage.xaml.cs">
+      <DependentUpon>PixelMathPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SIMDLinearizePage.xaml.cs">
+      <DependentUpon>SIMDLinearizePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\HSLPage.xaml.cs">
+      <DependentUpon>HSLPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\RotatePage.xaml.cs">
+      <DependentUpon>RotatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SubHistogramPage.xaml.cs">
+      <DependentUpon>SubHistogramPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\CroppingPage.xaml.cs">
+      <DependentUpon>CroppingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\BordersPage.xaml.cs">
+      <DependentUpon>BordersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\BlockSegmentPage.xaml.cs">
+      <DependentUpon>BlockSegmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\BayerConvolutionPage.xaml.cs">
+      <DependentUpon>BayerConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\DeinterlacePage.xaml.cs">
+      <DependentUpon>DeinterlacePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SteganographyReadPage.xaml.cs">
+      <DependentUpon>SteganographyReadPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SteganographyPage.xaml.cs">
+      <DependentUpon>SteganographyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\DitherPage.xaml.cs">
+      <DependentUpon>DitherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SilhouetteIfPage.xaml.cs">
+      <DependentUpon>SilhouetteIfPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\HoughTransformPage.xaml.cs">
+      <DependentUpon>HoughTransformPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ChannelHighlightPage.xaml.cs">
+      <DependentUpon>ChannelHighlightPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ColorAdjustmentPage.xaml.cs">
+      <DependentUpon>ColorAdjustmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\LuminancePage.xaml.cs">
+      <DependentUpon>LuminancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\RenderGridPage.xaml.cs">
+      <DependentUpon>RenderGridPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\BayerDecoderPage.xaml.cs">
+      <DependentUpon>BayerDecoderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ScalingPage.xaml.cs">
+      <DependentUpon>ScalingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\FrequencyMaskingPage.xaml.cs">
+      <DependentUpon>FrequencyMaskingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\IFilterPage.cs" />
+    <Compile Include="ImageManipulation\Pages\EditPage.xaml.cs">
+      <DependentUpon>EditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ImageDistortionsPage.xaml.cs">
+      <DependentUpon>ImageDistortionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SegmentPage.xaml.cs">
+      <DependentUpon>SegmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\MiscConvolutionPage.xaml.cs">
+      <DependentUpon>MiscConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\RegionPage.xaml.cs">
+      <DependentUpon>RegionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageMerger\ImageMerger.xaml.cs">
+      <DependentUpon>ImageMerger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewImageFrame\ImageFrame0.cs" />
+    <Compile Include="NewImageFrame\ImageFrame0DependencyProperties.cs" />
+    <Compile Include="PrettyImageRenderer.xaml.cs">
+      <DependentUpon>PrettyImageRenderer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QDPipelineNode\QDPipelineControl.xaml.cs">
+      <DependentUpon>QDPipelineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RectRegion.cs" />
+    <Compile Include="DebugMessageBox.xaml.cs">
+      <DependentUpon>DebugMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingBrushes.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GenerativeTest.cs" />
+    <Compile Include="HistogramWindow.xaml.cs">
+      <DependentUpon>HistogramWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageActions\StageBase.cs" />
+    <Compile Include="ImageActions\ActionNodes\DisplayStage.cs" />
+    <Compile Include="ImageActions\ActionNodes\SelectorStage.cs" />
+    <Compile Include="ImageActions\ActionNodes\SplitterStage.cs" />
+    <Compile Include="ImageActions\StageAction.cs" />
+    <Compile Include="ImageActions\ActionNodes\GrayscaleStage.cs" />
+    <Compile Include="ImageActions\ImageList.cs" />
+    <Compile Include="ImageActions\ActionNodes\NOPStage.cs" />
+    <Compile Include="ImageActions\Pipeline\ImagePipeline.cs" />
+    <Compile Include="ImageManipulation\Pages\BlurConvolutionPage.xaml.cs">
+      <DependentUpon>BlurConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ChannelSelectionPage.xaml.cs">
+      <DependentUpon>ChannelSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\EdgeDetectionConvolutionPage.xaml.cs">
+      <DependentUpon>EdgeDetectionConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\UserConvolutionPage.xaml.cs">
+      <DependentUpon>UserConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\MeanConvolutionPage.xaml.cs">
+      <DependentUpon>MeanConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\EmptyPage.xaml.cs">
+      <DependentUpon>EmptyPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SharpenConvolutionPage.xaml.cs">
+      <DependentUpon>SharpenConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ImageInversionPage.xaml.cs">
+      <DependentUpon>ImageInversionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\RGBColorMerge.xaml.cs">
+      <DependentUpon>RGBColorMerge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ColorSpaceConversionPage.xaml.cs">
+      <DependentUpon>ColorSpaceConversionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\MirrorPage.xaml.cs">
+      <DependentUpon>MirrorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\AutosPage.xaml.cs">
+      <DependentUpon>AutosPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ImageSplitPage.xaml.cs">
+      <DependentUpon>ImageSplitPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\RollingChannelMeanPage.xaml.cs">
+      <DependentUpon>RollingChannelMeanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ColorReductionPage.xaml.cs">
+      <DependentUpon>ColorReductionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ConstantMathPage.xaml.cs">
+      <DependentUpon>ConstantMathPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\MathPage.xaml.cs">
+      <DependentUpon>MathPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\EmbossConvolutionPage.xaml.cs">
+      <DependentUpon>EmbossConvolutionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ChannelMaskPage.xaml.cs">
+      <DependentUpon>ChannelMaskPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SingleImageMaskPage.xaml.cs">
+      <DependentUpon>SingleImageMaskPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SwapChannelsPage.xaml.cs">
+      <DependentUpon>SwapChannelsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SortChannelsPage.xaml.cs">
+      <DependentUpon>SortChannelsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ThresholdEditor.xaml.cs">
+      <DependentUpon>ThresholdEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\ThresholdPage.xaml.cs">
+      <DependentUpon>ThresholdPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\SolarizationPage.xaml.cs">
+      <DependentUpon>SolarizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\Pages\GrayscalePage.xaml.cs">
+      <DependentUpon>GrayscalePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\ImageMan.xaml.cs">
+      <DependentUpon>ImageMan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImageManipulation\OptionalValue.cs" />
+    <Compile Include="Meander\Meander.cs" />
+    <Compile Include="Meander\MeanderMotionStateChangedEventArgs.cs" />
+    <Compile Include="Meander\MeanderNewVectorEventArgs.cs" />
+    <Compile Include="Meander\MeanderPositionChangeEventArgs.cs" />
+    <Compile Include="Meander\MotionVector.cs" />
+    <Compile Include="Normal.cs" />
+    <Compile Include="Pipeline\BackgroundTransaction.cs" />
+    <Compile Include="Pipeline\ColorBlobTransaction.cs" />
+    <Compile Include="Pipeline\ColorBlockTransaction.cs" />
+    <Compile Include="Pipeline\LineTransaction.cs" />
+    <Compile Include="Pipeline\NOPTransaction.cs" />
+    <Compile Include="Pipeline\RenderTarget.cs" />
+    <Compile Include="PointEx.cs" />
+    <Compile Include="QDPipelineNode\QDPipelineNode.xaml.cs">
+      <DependentUpon>QDPipelineNode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RandomWalker\RandomWalker.cs" />
+    <Compile Include="RenderControl.cs" />
+    <Compile Include="Pipeline\RenderPipeline.cs" />
+    <Compile Include="Pipeline\RenderTransaction.cs" />
+    <Compile Include="SaveDialog.xaml.cs">
+      <DependentUpon>SaveDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SmallColor.xaml.cs">
+      <DependentUpon>SmallColor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UImage.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Vector2.cs" />
+    <Compile Include="WriteOnce.cs" />
+    <Page Include="BayerDecoder\BayerDecoderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorConverter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorConversionTest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPointItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Configurator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrumbBar\Crumb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CrumbBar\CrumbBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DebugMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistogramWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageFrame\ImageFrame.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\CMYKtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoLAB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoXYZ.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoTSL.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\LABtoXYZ.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoYDbDr.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoYCgCo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\XYZtoLAB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\LABtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\XYZtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\TSLtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RYBtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\ColorConversions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\HSVtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\NoConversion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoRYB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoCMYK.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoHSV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoYCbCr.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoYIQ.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoCMY.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoYUV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\YDbDrtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\YCbCrtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\YIQtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\CMYtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\YUVtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\HSLtoRGB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ColorConverter\RGBtoHSL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\HSLConditionalSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\HSLConditionsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\HSLConditionalAdjustmentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\IsolateHueRangePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\TestHSLConversionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\PixelMathFunctionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\PixelMathPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SIMDLinearizePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\HSLPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\RotatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SubHistogramPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\CroppingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\BordersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\BlockSegmentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\BayerConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\DeinterlacePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SteganographyReadPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SteganographyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\DitherPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SilhouetteIfPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\HoughTransformPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\BlurConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ChannelHighlightPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>
+      </SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ChannelSelectionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\EdgeDetectionConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ColorAdjustmentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\LuminancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\RenderGridPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\BayerDecoderPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ScalingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\EditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\FrequencyMaskingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ImageDistortionsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SegmentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>
+      </SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\MiscConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\RegionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>
+      </SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\UserConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\MeanConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\EmptyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SharpenConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ImageInversionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\RGBColorMerge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ColorSpaceConversionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\MirrorPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\AutosPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ImageSplitPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\RollingChannelMeanPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ColorReductionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ConstantMathPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\MathPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\EmbossConvolutionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>
+      </SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ChannelMaskPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SingleImageMaskPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>
+      </SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SwapChannelsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SortChannelsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\ThresholdEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\Pages\ThresholdPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\SolarizationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageManipulation\Pages\GrayscalePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageManipulation\ImageMan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImageMerger\ImageMerger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ColorInterface\ColorBlenderInterface.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PrettyImageRenderer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDPipelineNode\QDPipelineControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QDPipelineNode\QDPipelineNode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaveDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SmallColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Blend1.png" />
+    <Resource Include="Images\Blend2.png" />
+    <Resource Include="Images\Continuous1.png" />
+    <Resource Include="Images\Motion1.png" />
+    <Resource Include="Images\Render1.png" />
+    <Resource Include="Images\Reset1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Configurator1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CropTest1.png" />
+    <Resource Include="Images\Step1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Fill1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Line1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Continuous2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RedRectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TestImage0.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TestImage1.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ImageButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ImageButton2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ColorSpaces\ColorSpaces.csproj">
+      <Project>{f92bf151-1e41-49c6-b633-dcc4daf3d785}</Project>
+      <Name>ColorSpaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HistogramDisplay\HistogramDisplay.csproj">
+      <Project>{cfba3873-d361-40e1-aa28-f9608acb8674}</Project>
+      <Name>HistogramDisplay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageData.cs\ImageData.csproj">
+      <Project>{cc8784b2-2dac-47f4-8b28-8e0834d27811}</Project>
+      <Name>ImageData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RotationalSelector\RotationalSelector\RotationalSelector.csproj">
+      <Project>{9db123c7-beda-4b8b-bc4a-28d3cf22b06c}</Project>
+      <Name>RotationalSelector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleColorInput\SimpleColorInput\SimpleColorInput.csproj">
+      <Project>{cb5c25f7-e76e-4674-be16-c951c00ab26a}</Project>
+      <Name>SimpleColorInput</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rgb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bggr.png" />
+    <Resource Include="Images\rggb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\0°.png" />
+    <Resource Include="Images\180°.png" />
+    <Resource Include="Images\270°.png" />
+    <Resource Include="Images\90°.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BGROrder.png" />
+    <Resource Include="Images\BRGOrder.png" />
+    <Resource Include="Images\GBROrder.png" />
+    <Resource Include="Images\GRBOrder.png" />
+    <Resource Include="Images\RBGOrder.png" />
+    <Resource Include="Images\RGBOrder.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

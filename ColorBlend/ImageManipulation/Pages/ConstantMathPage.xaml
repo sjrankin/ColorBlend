@@ -1,0 +1,125 @@
+﻿<Page x:Class="ColorBlend.ConstantMathPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="GrayscalePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="Yellow" Offset="0.0"/>
+                    <GradientStop Color="Orange" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Solarize Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="4,2,2,2">
+                    <TextBlock Margin="2"
+                               VerticalAlignment="Center">
+                        Constant
+                    </TextBlock>
+                    <TextBox Name="ConstantInput"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Margin="2"
+                             Width="75"
+                             Height="20">
+                        0.5
+                    </TextBox>
+                    <CheckBox Margin="4,2,2,2"
+                              ToolTip="Check if the constant is normalized."
+                              VerticalAlignment="Center"
+                              Name="NormalConstant"
+                              IsChecked="False">
+                        Normal
+                    </CheckBox>
+                </StackPanel>
+                <GroupBox Header="Operation"
+                          Margin="4,2,2,2">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <RadioButton IsChecked="True"
+                                     Name="AddButton"
+                                     Margin="0,0,0,2">
+                            Add
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="SubtractButton"
+                                     Margin="0,0,0,2">
+                            Subtract
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="MultiplyButton"
+                                     Margin="0,0,0,2">
+                            Multiply
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="DivideButton"
+                                     Margin="0,0,0,2">
+                            Divide
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="ModuloButton"
+                                     Margin="0,0,0,2">
+                            Modulo
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="AndButton"
+                                     Margin="0,0,0,2">
+                            And
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="OrButton"
+                                     Margin="0,0,0,2">
+                            Or
+                        </RadioButton>
+                        <RadioButton IsChecked="False"
+                                     Name="XorButton"
+                                     Margin="0,0,0,2">
+                            Xor
+                        </RadioButton>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

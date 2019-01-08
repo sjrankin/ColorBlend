@@ -1,0 +1,476 @@
+﻿<Window x:Class="ColorBlend.Configurator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configurator" 
+        MinHeight="400"
+        Height="500" 
+        MinWidth="500"
+        Width="500" 
+        ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="White" Offset="0.0"/>
+                    <GradientStop Color="DimGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="2"
+                       FontSize="16"
+                       FontWeight="Bold">
+                Configurator
+            </TextBlock>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Background="WhiteSmoke">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" MinWidth="150"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"
+                  Margin="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="22"/>
+                </Grid.RowDefinitions>
+                <ListBox Name="PointListBox"
+                         SelectionChanged="PointListSelectionChanged"
+                         Grid.Row="0"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            ToolTip="Add a new color."
+                            Click="HandleAddPointClick">
+                        <TextBlock FontSize="18"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold">
+                        +
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Column="1"
+                            ToolTip="Remove an existing color"
+                            Click="HandleRemovePointClick">
+                        <TextBlock FontSize="18"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold">
+                        -
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Column="2"
+                            ToolTip="Move selected color up."
+                            Click="HandleMovePointUpClick">
+                        ▲
+                    </Button>
+                    <Button Grid.Column="3"
+                            ToolTip="Move selected color down."
+                            Click="HandleMovePointDownClick">
+                        ▼
+                    </Button>
+                    <Button Grid.Column="4"
+                            ToolTip="Reset color list."
+                            Click="HandleResetPointsClick">
+                        ○
+                    </Button>
+                    <Button Grid.Column="5"
+                            FontWeight="Bold"
+                            Click="HandleRandomizeEverything"
+                            ToolTip="Randomize the full set of points.">
+                        ℜ
+                    </Button>
+                    <Button Grid.Column="6"
+                            FontWeight="Bold"
+                            Click="HandleClearAllPoints"
+                            ToolTip="Removes all points from the set of points.">
+                        ∅
+                    </Button>
+                </Grid>
+            </Grid>
+            <GridSplitter Grid.Column="1"
+                          VerticalAlignment="Stretch"
+                          HorizontalAlignment="Left"
+                          Width="6"
+                          Background="Black"/>
+            <Grid Grid.Column="1"
+                  Margin="6,0,0,0">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   TextWrapping="Wrap"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Margin="0,0,5,0">
+                            Point name
+                        </TextBlock>
+                        <TextBox Name="PointNameBox"
+                                 Grid.Row="0"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 KeyDown="TextBoxKeyDown"
+                                 LostFocus="TextBoxLostFocus"
+                                 VerticalContentAlignment="Center"
+                                 Margin="5,0,0,0"
+                                 Height="24"
+                                 Width="150">
+                            name here
+                        </TextBox>
+
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   Foreground="Navy"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   TextWrapping="Wrap"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   Margin="0,0,5,0">
+                            Relative location
+                        </TextBlock>
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       FontWeight="Bold">
+                                X
+                            </TextBlock>
+                            <TextBox Name="RelativeXBox"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     KeyDown="TextBoxKeyDown"
+                                     LostFocus="TextBoxLostFocus"
+                                     Width="35"
+                                     Height="24">
+                                1.0
+                            </TextBox>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       FontSize="14"
+                                       FontWeight="Bold">
+                                ☊
+                            </TextBlock>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="20,2,2,2"
+                                       FontWeight="Bold">
+                                Y
+                            </TextBlock>
+                            <TextBox Name="RelativeYBox"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                      KeyDown="TextBoxKeyDown"
+                                      LostFocus="TextBoxLostFocus"
+                                     Width="35"
+                                     Height="24">
+                                1.0
+                            </TextBox>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="2"
+                                       FontSize="14"
+                                       FontWeight="Bold">
+                                ☊
+                            </TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="2"
+                                   Grid.Column="0"
+                                   Foreground="Navy"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Color
+                        </TextBlock>
+                        <StackPanel Grid.Row="2"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left">
+                            <TextBox Name="ColorBox"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     KeyDown="TextBoxKeyDown"
+                                     LostFocus="TextBoxLostFocus"
+                                     FontFamily="Consolas"
+                                     FontSize="14"
+                                     FontWeight="Bold"
+                                     Height="24"
+                                     Width="100">
+                                #ffffffff
+                            </TextBox>
+                            <Border Name="ColorSample"
+                                    Margin="10,2,2,2"
+                                    VerticalAlignment="Center"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Background="White"
+                                    Height="20"
+                                    Width="20"/>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="3"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Radius
+                        </TextBlock>
+                        <CheckBox Grid.Row="3"
+                                  Grid.Column="1"
+                                  Checked="HandleChecked"
+                                  Unchecked="HandleChecked"
+                                  Name="EnableRadiusCheck"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Margin="5,0,0,0"
+                                  IsChecked="False">
+                            Enable radius
+                        </CheckBox>
+
+                        <TextBlock Grid.Row="4"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Radius
+                        </TextBlock>
+                        <TextBox Name="RadiusBox"
+                                 Grid.Row="4"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="TextBoxKeyDown"
+                                 LostFocus="TextBoxLostFocus"
+                                 Height="24"
+                                 Width="80"
+                                 Margin="5,0,0,0">
+                            100.0
+                        </TextBox>
+
+                        <TextBlock Grid.Row="5"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Alpha
+                        </TextBlock>
+                        <CheckBox Grid.Row="5"
+                                  Grid.Column="1"
+                                  Name="EnableAlphaCheck"
+                                  Checked="HandleChecked"
+                                  Unchecked="HandleChecked"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Margin="5,0,0,0"
+                                  IsChecked="False">
+                            Enable alpha
+                        </CheckBox>
+
+                        <TextBlock Grid.Row="6"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Alpha at point
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Row="6"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left">
+                            <TextBox Name="OriginAlphaBox"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="TextBoxKeyDown"
+                                 LostFocus="TextBoxLostFocus"
+                                 Height="24"
+                                 Width="35"
+                                 Margin="5,0,0,0">
+                                1.0
+                            </TextBox>
+                            <TextBlock Margin="3,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="14"
+                                       FontWeight="Bold">
+                                ☊
+                            </TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="7"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Alpha at radius
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Row="7"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left">
+                            <TextBox Name="RadialAlphaBox"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Left"
+                                 VerticalContentAlignment="Center"
+                                  KeyDown="TextBoxKeyDown"
+                                 LostFocus="TextBoxLostFocus"
+                                 Height="24"
+                                 Width="35"
+                                 Margin="5,0,0,0">
+                                0.0
+                            </TextBox>
+                            <TextBlock Margin="3,0,0,0"
+                                       VerticalAlignment="Center"
+                                       FontSize="14"
+                                       FontWeight="Bold">
+                                ☊
+                            </TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="8"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Enable
+                        </TextBlock>
+                        <CheckBox Grid.Row="8"
+                                  Grid.Column="1"
+                                  Checked="HandleChecked"
+                                  Unchecked="HandleChecked"
+                                  Name="EnablePointCheck"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Margin="5,0,0,0"
+                                  IsChecked="False">
+                            Enable color point
+                        </CheckBox>
+
+                        <TextBlock Grid.Row="9"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,5,0">
+                            Debug
+                        </TextBlock>
+                        <StackPanel Grid.Row="9"
+                                    Grid.Column="1"
+                                    Orientation="Vertical"
+                                    Margin="5,0,0,0">
+                            <CheckBox Margin="2" 
+                                      Checked="HandleChecked"
+                                  Unchecked="HandleChecked"
+                                      VerticalAlignment="Center"
+                                      Name="EnableIndicatorsCheck">
+                                Show indicators
+                            </CheckBox>
+                        </StackPanel>
+                        
+                        <Button Grid.Row="10"
+                                Grid.Column="1"
+                                Height="24"
+                                Width="100"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="5,0,0,0"
+                                Click="RandomizeSinglePoint">
+                            Randomize Point
+                        </Button>
+
+                    </Grid>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <Border Grid.Row="2"
+                BorderBrush="DimGray"
+                BorderThickness="0,1,0,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Width="75"
+                        Height="23"
+                        IsDefault="True"
+                        Click="HandleOKCliked">
+                    OK
+                </Button>
+                <Button Grid.Column="1"
+                        Width="75"
+                        Height="23"
+                        Click="HandleCancelClicked">
+                    Cancel
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,6 @@
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorBlend\SegmentImageManager\bin\Debug\SegmentImageManager.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorBlend\SegmentImageManager\bin\Debug\SegmentImageManager.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorBlend\SegmentImageManager\obj\Debug\SegmentImageManager.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorBlend\SegmentImageManager\obj\Debug\SegmentImageManager.csproj.CoreCompileInputs.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorBlend\SegmentImageManager\obj\Debug\SegmentImageManager.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorBlend\SegmentImageManager\obj\Debug\SegmentImageManager.pdb

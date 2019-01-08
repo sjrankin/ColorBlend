@@ -1,0 +1,6 @@
+C:\Users\sjrankin\Desktop\ColorBlend\DropDownButton\obj\Debug\DropDownButton.baml
+C:\Users\sjrankin\Desktop\ColorBlend\DropDownButton\obj\Debug\DropDownButton.g.cs
+C:\Users\sjrankin\Desktop\ColorBlend\DropDownButton\obj\Debug\DropDownButton_MarkupCompile.cache
+C:\Users\sjrankin\Desktop\ColorBlend\DropDownButton\obj\Debug\DropDownButton.g.resources
+C:\Users\sjrankin\Desktop\ColorBlend\DropDownButton\obj\Debug\Buttons.Properties.Resources.resources
+C:\Users\sjrankin\Desktop\ColorBlend\DropDownButton\obj\Debug\DropDownButton.csproj.GenerateResource.Cache

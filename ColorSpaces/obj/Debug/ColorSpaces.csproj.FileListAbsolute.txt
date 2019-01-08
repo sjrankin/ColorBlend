@@ -1,0 +1,15 @@
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\ColorSpaces\bin\Debug\ColorSpaces.dll
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\ColorSpaces\bin\Debug\ColorSpaces.pdb
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.dll
+C:\Users\sjrankin.AMR\Desktop\P\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.pdb
+C:\Users\Stuart\Desktop\ColorBlend\ColorSpaces\bin\Debug\ColorSpaces.dll
+C:\Users\Stuart\Desktop\ColorBlend\ColorSpaces\bin\Debug\ColorSpaces.pdb
+C:\Users\Stuart\Desktop\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.dll
+C:\Users\Stuart\Desktop\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorSpaces\bin\Debug\ColorSpaces.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorSpaces\bin\Debug\ColorSpaces.pdb
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.csprojResolveAssemblyReference.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.csproj.CoreCompileInputs.cache
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.dll
+C:\Users\Stuart\Desktop\Projects4\ColorBlend\ColorSpaces\obj\Debug\ColorSpaces.pdb

@@ -1,0 +1,181 @@
+﻿<Page x:Class="ColorBlend.ImageInversionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ColorBlend"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="GrayscalePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="DarkGray" Offset="0.0"/>
+                    <GradientStop Color="Black" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock FontSize="16"
+                       FontFamily="Segoe UI"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="3">
+                Inversion Options
+            </TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1"
+                      Background="WhiteSmoke">
+            <StackPanel Orientation="Vertical"
+                        Margin="3">
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="4,2,2,2"
+                        Width="75"
+                        Height="22"
+                        ToolTip="Click to run filter."
+                        HorizontalAlignment="Left"
+                        Click="ExecuteFilter">
+                        Execute
+                    </Button>
+                    <Button Margin="4,2,2,2"
+                            Width="75"
+                            Height="22"
+                            ToolTip="Reset image to original"
+                            HorizontalAlignment="Left"
+                            Click="ResetLocalImage">
+                        Image Reset
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="4,2,2,2">
+                </StackPanel>
+                <CheckBox IsChecked="False"
+                          Name="IncludeAlpha"
+                          Margin="4,4,2,2">
+                    Include alpha
+                </CheckBox>
+                <GroupBox Header="Optional">
+                    <StackPanel Orientation="Vertical"
+                                Margin="2">
+                        <CheckBox Name="EnableOptional"
+                                  Margin="2,2,2,6"
+                                  ToolTip="Check to enable optional parameters."
+                                  IsChecked="False">
+                            Enable
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2">
+                            <CheckBox Name="InvertAlphaChannel"
+                                   IsChecked="False" 
+                                      VerticalAlignment="Center"
+                                  Margin="2"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableOptional}">
+                                Invert alpha
+                            </CheckBox>
+                            <CheckBox Name="UseAlphaThresholdCheck"
+                                      IsChecked="False"
+                                      IsEnabled="{Binding IsEnabled, ElementName=InvertAlphaChannel}"
+                                      VerticalAlignment="Center"
+                                      Margin="6,2,4,2">
+                                Alpha threshold
+                            </CheckBox>
+                            <TextBox Name="AlphaThresholdBox"
+                                     Margin="2"
+                                     IsEnabled="{Binding IsChecked, ElementName=UseAlphaThresholdCheck}"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Height="22"
+                                     Width="50">
+                                0x80
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2,4,2,2">
+                            <CheckBox Name="InvertRedChannel"
+                                   IsChecked="True" 
+                                      VerticalAlignment="Center"
+                                  Margin="2"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableOptional}">
+                                Invert red
+                            </CheckBox>
+                            <CheckBox Name="UseRedThresholdCheck"
+                                      IsChecked="False"
+                                      IsEnabled="{Binding IsEnabled, ElementName=InvertRedChannel}"
+                                      VerticalAlignment="Center"
+                                      Margin="6,2,4,2">
+                                Red threshold
+                            </CheckBox>
+                            <TextBox Name="RedThresholdBox"
+                                     Margin="2"
+                                     IsEnabled="{Binding IsChecked, ElementName=UseRedThresholdCheck}"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Height="22"
+                                     Width="50">
+                                0x80
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="2,4,2,2">
+                            <CheckBox Name="InvertGreenChannel"
+                                   IsChecked="True" 
+                                      VerticalAlignment="Center"
+                                  Margin="2"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableOptional}">
+                                Invert green
+                            </CheckBox>
+                            <CheckBox Name="UseGreenThresholdCheck"
+                                      IsChecked="False"
+                                      IsEnabled="{Binding IsEnabled, ElementName=InvertGreenChannel}"
+                                      VerticalAlignment="Center"
+                                      Margin="6,2,4,2">
+                                Green threshold
+                            </CheckBox>
+                            <TextBox Name="GreenThresholdBox"
+                                     Margin="2"
+                                     IsEnabled="{Binding IsChecked, ElementName=UseGreenThresholdCheck}"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Height="22"
+                                     Width="50">
+                                0x80
+                            </TextBox>
+                        </StackPanel>
+                         <StackPanel Orientation="Horizontal"
+                                    Margin="2,4,2,2">
+                            <CheckBox Name="InvertBlueChannel"
+                                   IsChecked="True" 
+                                      VerticalAlignment="Center"
+                                  Margin="2"
+                                  IsEnabled="{Binding IsChecked, ElementName=EnableOptional}">
+                                Invert blue
+                            </CheckBox>
+                            <CheckBox Name="UseBlueThresholdCheck"
+                                      IsChecked="False"
+                                      IsEnabled="{Binding IsEnabled, ElementName=InvertBlueChannel}"
+                                      VerticalAlignment="Center"
+                                      Margin="6,2,4,2">
+                                Blue threshold
+                            </CheckBox>
+                            <TextBox Name="BlueThresholdBox"
+                                     Margin="2"
+                                     IsEnabled="{Binding IsChecked, ElementName=UseBlueThresholdCheck}"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Height="22"
+                                     Width="50">
+                                0x80
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,143 @@
+﻿<Window x:Class="ColorBlend.BayerDecoderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorBlend"
+        mc:Ignorable="d"
+        Title="Bayes Decoder" Height="400" Width="600" ShowInTaskbar="False" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="140"/>
+            </Grid.ColumnDefinitions>
+            <local:ImageFrame x:Name="SourceImage"
+                              BorderBrush="Black"
+                              BorderThickness="1"
+                              ShowHeaderRow="True"
+                              HeaderText="Source"
+                              DragOperationStartEvent="SourceImage_DragOperationStartEvent"
+                              ObjectsDroppedEvent="SourceImage_ObjectsDroppedEvent"
+                              Grid.Column="0"/>
+            <local:ImageFrame x:Name="DestinationImage"
+                              BorderBrush="Black"
+                              BorderThickness="1"
+                              IsImageDropEnabled="False"
+                              ShowHeaderRow="True"
+                              HeaderText="Result"
+                              Grid.Column="1"/>
+            <Border Grid.Column="2"
+                    Background="WhiteSmoke">
+                <Border Width="100"
+                        Height="100"
+                        Margin="5,20,5,5"
+                        BorderBrush="Black"
+                        BorderThickness="2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center">
+                    <Grid Name="BayesFilterGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0"
+                                Grid.Column="0"
+                                Background="Red">
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Red"
+                                              Name="Red_00"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Green"
+                                              Name="Green_00"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Blue"
+                                              Name="Blue_00"
+                                              Click="ColorClick"/>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                        <Border Grid.Row="0"
+                                Grid.Column="1"
+                                Background="LimeGreen">
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Red"
+                                              Name="Red_10"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Green"
+                                              Name="Green_10"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Blue"
+                                              Name="Blue_10"
+                                              Click="ColorClick"/>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                        <Border Grid.Row="1"
+                                Grid.Column="0"
+                                Background="LimeGreen">
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Red"
+                                              Name="Red_01"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Green"
+                                              Name="Green_01"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Blue"
+                                              Name="Blue_01"
+                                              Click="ColorClick"/>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                        <Border Grid.Row="1"
+                                Grid.Column="1"
+                                Background="Blue">
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Red"
+                                              Name="Red_11"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Green"
+                                              Name="Green_11"
+                                              Click="ColorClick"/>
+                                    <MenuItem Header="Blue"
+                                              Name="Blue_11"
+                                              Click="ColorClick"/>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                    </Grid>
+                </Border>
+
+            </Border>
+        </Grid>
+        <Border Grid.Row="1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="WhiteSmoke" Offset="0.0"/>
+                    <GradientStop Color="LightGray" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Width="75"
+                    Height="24"
+                    IsDefault="True"
+                    Click="HandleCloseButtonClick"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                Close
+            </Button>
+        </Border>
+    </Grid>
+</Window>
